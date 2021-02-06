@@ -1,0 +1,60 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '10.0'
+
+target 'RN_Redux' do
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+  pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse.podspec"
+  
+  rn_maps_path = '../node_modules/react-native-maps'
+  
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
+
+  config = use_native_modules!
+
+  use_react_native!(:path => config["reactNativePath"])
+
+  pod 'Firebase/Analytics'
+
+  pod 'Firebase/Messaging'
+
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
+  pod 'RNFloatingBubble', :path => '../node_modules/react-native-floating-bubble/ios'
+
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
+  pod 'react-native-immediate-phone-call', :path => '../node_modules/react-native-immediate-phone-call'
+
+  pod 'react-native-gps-state', :path => '../node_modules/react-native-gps-state'
+
+  pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
+
+  target 'RN_ReduxTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable these next few lines.
+  #use_flipper!
+  #post_install do |installer|
+   # flipper_post_install(installer)
+  #end
+end
+
+target 'RN_Redux-tvOS' do
+  # Pods for RN_Redux-tvOS
+
+  target 'RN_Redux-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
