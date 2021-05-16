@@ -13,7 +13,7 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:3.5.3")
-            classpath 'com.google.gms:google-services:4.3.3'
+            classpath 'com.google.gms:google-services:4.3.5'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -44,5 +44,9 @@ ext {
     minSdkVersion       = 26
     supportLibVersion   = "29.0.0"
     playServicesVersion = "17.0.0" // or find latest version
+    MYAPP_UPLOAD_STORE_FILE='/LLave.jks'
+MYAPP_UPLOAD_KEY_ALIAS='namiqui'
+MYAPP_UPLOAD_STORE_PASSWORD='123456qW'
+MYAPP_UPLOAD_KEY_PASSWORD='123456qW'
     // androidMapsUtilsVersion = "xxx"
 }

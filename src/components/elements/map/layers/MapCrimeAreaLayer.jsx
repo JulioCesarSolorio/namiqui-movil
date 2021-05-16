@@ -37,16 +37,32 @@ export default function MapCrimeAreaLayer(props) {
           )
             .then((response) => {
               if (!response.errors) {
+                //console.log("muchas areas:JRC:"+response.data[0].polygonData[0].latitude);
+                for(var x=0;x<response.data.length;x++)
+                {
+                  
+                  for(var y=0;y<response.data[x].polygonData.length;y++)
+                  {
+                    //console.log("entre aqui:JRC:"+response.data[x].polygonData[y].latitude);
+
+                    var lat=response.data[x].polygonData[y].latitude;
+                    var lng=response.data[x].polygonData[y].longitude;
+                    response.data[x].polygonData[y].latitude=lng;
+                    response.data[x].polygonData[y].longitude=lat;
+                    //console.log("entre aqui:JRC:"+response.data[x].polygonData[y].latitude);
+                  }
+                }
                 setCrimeAreas({
                   data: response.data,
                 });
               }
             })
             .catch(() => {
-              setAlertVisible(true);
-              setAlertTitle('Error');
-              setAlertText('Ocurrió un error inesperado al tratar de cargar los poligonos del mapa.');
-              setAlertImage(failureIcon);
+              console.log("error al cargar los poligonos del mapa!!");
+              //setAlertVisible(true);
+              //setAlertTitle('Error');
+              //setAlertText('Ocurrió un error inesperado al tratar de cargar los poligonos del mapa.');
+              //setAlertImage(failureIcon);
             }))
         .catch(() => {
           setAlertVisible(true);
@@ -63,11 +79,12 @@ export default function MapCrimeAreaLayer(props) {
 
         && Object.keys(crimeAreasMap.data).map((k) => {
           const area = crimeAreasMap.data[k];
+        
 
           return (
             <Polygon
               key={k}
-              coordinates={area.polygon}
+              coordinates={area.polygonData}
               strokeColor="#F00"
               fillColor={area.status.color}
               strokeWidth={1}

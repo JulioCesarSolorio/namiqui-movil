@@ -60,6 +60,8 @@ export default function userReducers(state, action) {
       return newState;
     default:
       console.log('userReducers.js - verfication failed');
+      console.log(action.type);
+      
       return state || newState;
   }
 }

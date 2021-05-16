@@ -34,8 +34,8 @@ let initialRegion;
 let isMapInitialized = false;
 let existGpsLoop = false;
 
-const DELTA_LATITUDE = 0.0922;
-const DELTA_LONGITUDE = 0.0421;
+const DELTA_LATITUDE = 0.0222;
+const DELTA_LONGITUDE = 0.0121;
 const REFRESH_LOOP_TIME_WITHOUT_GPS = 10;
 
 // =============== INIT MAP =======================

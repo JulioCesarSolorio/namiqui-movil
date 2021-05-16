@@ -112,9 +112,9 @@ export async function changePasswordWithCode({
 export async function recoverPassword(username) {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
-
-  const raw = JSON.stringify({ username });
-
+  console.log(`${Config.NAMIQUI_GATEWAY}/api/users/recovery`);
+  const raw = JSON.stringify({ "userName":username });
+  console.log(raw);
   const requestOptions = {
     method: 'POST',
     headers: myHeaders,
@@ -123,7 +123,7 @@ export async function recoverPassword(username) {
   };
 
   return apiRequest(
-    `${Config.NAMIQUI_GATEWAY}/api/users/recoveryByCode`,
+    `${Config.NAMIQUI_GATEWAY}/api/users/recovery`,
     requestOptions,
     'recoverPassword',
   );
@@ -166,17 +166,20 @@ export function changeInfo(username, data, token) {
   } = data;
 
   const raw = JSON.stringify({
-    address: address || ' ',
-    address_state_id,
-    address_city,
-    address_colony,
-    address_cp,
-    userImage,
+    username,
     name,
     phone,
-    username,
+    userImage,
+    address: {
+      countryId: 1,
+      address: address || ' ',
+      address_state_id,
+      address_city,
+      address_colony,
+      address_cp,
+    },
   });
-
+  console.log(raw);
   const requestOptions = {
     method: 'PUT',
     headers: myHeaders,
@@ -282,16 +285,17 @@ export function refreshJWT(refreshToken) {
 }
 
 export function sendAyudameAlert({
-  token, username, lat, lng,
+  token, id, lat, lng,
 }) {
   const myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
   myHeaders.append('Content-Type', 'application/json');
   const now = new Date().toISOString();
-  console.log(now, lat, lng, username);
+  console.log(now, lat, lng, id);
   const raw = JSON.stringify({
-    event_date: now, lat, lng, origin: username,
+    event_date: now, lat, lng, user_id: id,app_crime_act_id:18
   });
+
 
   const requestOptions = {
     method: 'POST',
@@ -313,7 +317,7 @@ export function saveUserConfig({ username, configurations, token }) {
   myHeaders.append('Content-Type', 'application/json');
 
   const raw = JSON.stringify({ username, configurations });
-
+  console.log(raw);
   const requestOptions = {
     method: 'PUT',
     headers: myHeaders,
@@ -343,5 +347,46 @@ export function getUserConfigs({ username, token }) {
     `${Config.NAMIQUI_GATEWAY}/api/users/configurations?username=${username}`,
     requestOptions,
     'getUserConfigs',
+  );
+}
+
+export function getUserByUsername({ username, token }) {
+  console.log('getUserByUsername', username);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${token}`);
+
+  var raw = "";
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  return apiRequest(
+    `${Config.NAMIQUI_GATEWAY}/api/users/search/byUsername?username=${username}`,
+    requestOptions,
+    'getUserByUsername',
+  );
+}
+
+export function getUserById({ id, token }) {
+  console.log('getUserById', id);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${token}` );
+  
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  return apiRequest(
+    `${Config.NAMIQUI_GATEWAY}/api/users/namiusersById?id=${id}`,
+    requestOptions,
+    'getUserById',
   );
 }

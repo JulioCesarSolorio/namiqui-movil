@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "392595409567",
-    "firebase_url": "https://namiqui-f3019.firebaseio.com",
-    "project_id": "namiqui-f3019",
-    "storage_bucket": "namiqui-f3019.appspot.com"
+    "project_number": "487383892456",
+    "project_id": "namiqui-c5397",
+    "storage_bucket": "namiqui-c5397.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:392595409567:android:e8114db4d528e8c379b0aa",
+        "mobilesdk_app_id": "1:487383892456:android:5e4cf998993771da89e45d",
         "android_client_info": {
           "package_name": "com.namiqui"
         }
       },
       "oauth_client": [
         {
-          "client_id": "392595409567-eokbmjjvh5ksmif24k1il24qhbgbf0v5.apps.googleusercontent.com",
+          "client_id": "487383892456-458h6l355ccbeu66qtnpspo5r86dqcji.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAHT62P7OsxTt5vvFaeHgHjYDbP55t4JAw"
+          "current_key": "AIzaSyDTso5_WMC12Des33ClDQZSefZ5ZRUkC-s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "392595409567-eokbmjjvh5ksmif24k1il24qhbgbf0v5.apps.googleusercontent.com",
+              "client_id": "487383892456-458h6l355ccbeu66qtnpspo5r86dqcji.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

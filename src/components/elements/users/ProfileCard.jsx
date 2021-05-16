@@ -18,7 +18,7 @@ export default function ProfileCard(props) {
         <NamiUserLabel
           user={user}
           imgSize={60}
-          userRol={user && user.roles && user.roles[0] && user.roles[0].name === 'USER_FREE' ? 'Namiqui Free' : 'Pruebas'}
+          userRol={user && user.roles && user.roles[0] && user.roles[0].name === 'USER_FREE' ? 'Namiqui Free' : 'Namiqui Free'}
         />
       </View>
       <NamiquiButton

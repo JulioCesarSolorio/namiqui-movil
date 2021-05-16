@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {
-  TextInput, View, Image, Modal, ActivityIndicator,
+  TextInput, View, Image, Modal, ActivityIndicator,Linking
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
@@ -282,7 +282,7 @@ function NamiquiDrawerItem(props) {
   } = props;
   return (
     <View style={{
-      width: '100%', height: 60, display: 'flex', flexDirection: 'row',
+      width: '90%', height: 50, display: 'flex', flexDirection: 'row',
     }}
     >
       <DrawerItem
@@ -290,7 +290,7 @@ function NamiquiDrawerItem(props) {
           <Image
             source={icon}
             style={{
-              alignSelf: 'center', height: 40, width: 40, marginLeft: 0,
+              alignSelf: 'center', height: 35, width: 35, marginLeft: 0,
             }}
           />
         )}
@@ -298,6 +298,34 @@ function NamiquiDrawerItem(props) {
         style={{ backgroundColor: '#1E1E1F', flex: 1 }}
         labelStyle={{ color: '#fff', fontFamily: 'Kollektif-Bold', fontSize: 20 }}
         onPress={() => (onPress ? onPress() : navigation.navigate(screen || label))}
+      />
+    </View>
+  );
+}
+
+
+function NamiquiDrawerItemLink(props) {
+  const {
+    link, label, icon, screen, onPress,
+  } = props;
+  return (
+    <View style={{
+      width: '100%', height: 50, display: 'flex', flexDirection: 'row',
+    }}
+    >
+      <DrawerItem
+        icon={({ focused, color, size }) => (
+          <Image
+            source={icon}
+            style={{
+              alignSelf: 'center', height: 35, width: 35, marginLeft: 0,
+            }}
+          />
+        )}
+        label={label}
+        style={{ backgroundColor: '#1E1E1F', flex: 1 }}
+        labelStyle={{ color: '#fff', fontFamily: 'Kollektif-Bold', fontSize: 20 }}
+        onPress={() => (onPress ? onPress() : Linking.openURL(link))}
       />
     </View>
   );
@@ -312,4 +340,5 @@ export {
   NamiquiAlert,
   NamiquiInputIcon,
   NamiquiDrawerItem,
+  NamiquiDrawerItemLink,
 };

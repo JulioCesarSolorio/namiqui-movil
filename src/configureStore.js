@@ -7,6 +7,7 @@ import userReducers from './reducers/userReducers';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  timeout: null,
 };
 
 const persistedReducer = persistReducer(persistConfig, combineReducers({ userReducers }));
