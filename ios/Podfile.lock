@@ -385,8 +385,7 @@ PODS:
     - Firebase/Messaging (~> 6.30.0)
     - React
     - RNFBApp
-  - RNFloatingBubble (1.0.0):
-    - React
+
   - RNGestureHandler (1.7.0):
     - React
   - RNPermissions (2.2.2):
@@ -447,7 +446,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
-  - RNFloatingBubble (from `../node_modules/react-native-floating-bubble/ios`)
+
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -557,8 +556,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBMessaging:
     :path: "../node_modules/@react-native-firebase/messaging"
-  RNFloatingBubble:
-    :path: "../node_modules/react-native-floating-bubble/ios"
+
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNPermissions:
@@ -630,7 +628,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNFBApp: 373cce42559cc7a9a42afc876746e3946de3e32e
   RNFBMessaging: c69238917a8672f5aed2c8a6ee124efa8f962677
-  RNFloatingBubble: 717e520d808ee2da6eb5104d4d21ae7cf8a3a83c
+
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
   RNPermissions: 067727df624665d4a6c8e2cffcc172ba608b96ed
   RNReanimated: c2bb7438b57a3d987bb2e4e6e4bca94787e30b02
