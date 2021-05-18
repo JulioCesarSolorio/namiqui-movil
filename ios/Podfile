@@ -25,7 +25,7 @@ target 'RN_Redux' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
-
+  pod 'RNFloatingBubble', :path => '../node_modules/react-native-floating-bubble/ios'
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
