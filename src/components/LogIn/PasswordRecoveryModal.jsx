@@ -17,6 +17,7 @@ export default function PasswordRecoveryModal(props) {
   } = useForm();
   const watchPassword = watch('password');
   const [fullCode, setFullCode] = useState([]);
+  const refInputPassword=useRef();
   const refInput1 = useRef();
   const refInput3 = useRef();
   const refInput2 = useRef();
@@ -26,6 +27,7 @@ export default function PasswordRecoveryModal(props) {
   function dismissModal() {
     setStep('enter code');
     setFullCode([]);
+
     closeModal();
   }
 
@@ -44,10 +46,11 @@ export default function PasswordRecoveryModal(props) {
   }
 
   function onSubmit(data) {
-    const { password } = data;
-    const fullData = { code: fullCode.join(''), newPassword: password };
-    console.log('onSubmit fullData', fullData);
-    submitChangePassword(fullData);
+   
+    //const { password } = data;
+    //const fullData = { code: fullCode.join(''), newPassword: password };
+    //console.log('onSubmit fullData', fullData);
+    //submitChangePassword(fullData);
   }
 
   useEffect(() => {
@@ -108,43 +111,15 @@ export default function PasswordRecoveryModal(props) {
                   color: '#000', fontSize: 24, textAlign: 'center', marginVertical: 25,
                 }}
               >
-                Te mandamos un correo con un código de recuperación. Ingresa el código aqui.
+                Te mandamos un correo con un código de recuperación. Saludos
               </Text>
-              <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                <PasswordRecoveryDigit
-                  onEnterDigit={(d) => submitDigit(d, 0, () => refInput1.current.focus())}
-                  value={fullCode[0]}
-                  autoFocus
-                />
-                <PasswordRecoveryDigit
-                  onEnterDigit={(d) => submitDigit(d, 1, () => refInput2.current.focus())}
-                  value={fullCode[1]}
-                  refInput={refInput1}
-                />
-                <PasswordRecoveryDigit
-                  onEnterDigit={(d) => submitDigit(d, 2, () => refInput3.current.focus())}
-                  value={fullCode[2]}
-                  refInput={refInput2}
-                />
-                <PasswordRecoveryDigit
-                  onEnterDigit={(d) => submitDigit(d, 3, () => refInput4.current.focus())}
-                  value={fullCode[3]}
-                  refInput={refInput3}
-                />
-                <PasswordRecoveryDigit
-                  onEnterDigit={(d) => submitDigit(d, 4, () => refInput5.current.focus())}
-                  value={fullCode[4]}
-                  refInput={refInput4}
-                />
-                <PasswordRecoveryDigit
-                  onEnterDigit={(d) => submitDigit(d, 5, () => undefined)}
-                  value={fullCode[5]}
-                  refInput={refInput5}
-                />
+              <View style={{ display: 'flex', flexDirection: 'row' }}>
+                              
               </View>
               <NamiquiButton
                 text="Enviar"
-                onPress={() => handleSubmit(onSubmit)}
+                //onPress={() => handleSubmit(onSubmit)}
+                onPress={() => closeModal()}
                 disabled
                 style={{
                   marginVertical: 15,
