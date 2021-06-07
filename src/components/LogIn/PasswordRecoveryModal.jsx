@@ -108,7 +108,7 @@ export default function PasswordRecoveryModal(props) {
             <View style={{ marginVertical: 25 }}>
               <Text
                 style={{
-                  color: '#000', fontSize: 24, textAlign: 'center', marginVertical: 25,
+                  color: '#000', fontSize: 24, textAlign: 'center', marginVertical: 24,
                 }}
               >
                 Te mandamos un correo con un código de recuperación. Saludos
