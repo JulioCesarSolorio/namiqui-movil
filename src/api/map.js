@@ -45,8 +45,9 @@ export async function getCrimeMap(token, latitude, longitude, filters) {
     headers: myHeaders,
   };
   if (latitude && longitude) {
+
     return apiRequest(
-      `${Config.NAMIQUI_GATEWAY}/api/core/crime-data?lat=${latitude}&lng=${longitude}&radius=5000`,
+      `${Config.NAMIQUI_GATEWAY}/api/core/crime-data?lat=${latitude}&lng=${longitude}&radius=1000`,
       requestOptions,
       'getCrimeMap',
     )
@@ -55,7 +56,11 @@ export async function getCrimeMap(token, latitude, longitude, filters) {
 
         if (tempCrimeMap !== undefined && !tempCrimeMap.errors) {
           const data = [];
-
+          const delitos=[];
+         
+          
+          console.log(delitos);
+          var crimenes=0;
           Object.keys(tempCrimeMap.data).forEach((k) => {
             const crime = tempCrimeMap.data[k];
             crime.icon = REQAssets.getCrimeIconMap(crime);
@@ -64,14 +69,100 @@ export async function getCrimeMap(token, latitude, longitude, filters) {
 
             if (filters.crimeTypes.length > 0) {
               // filtrar si el tipo de crimen viene en los filtros
+              
               Object.keys(filters.crimeTypes).forEach((crimeType) => {
                 if (filters.crimeTypes[crimeType].id === crime.app_crime_act_id) {
                   crime.type = filters.crimeTypes[crimeType];
-                  data.push(crime);
+                  //delitos[filters.crimeTypes[crimeType].id].total++;
+                  //crime.latitude =crime.latitude+(.00005*crimenes);
+                  //crime.longitude = crime.longitude+(.00005*crimenes);
+                  crimenes++;
+                  var encontre=0;
+                  
+                  for(var x=0;x<data.length;x++)
+                  {
+                    
+                    if(data[x].app_crime_act_id === crime.app_crime_act_id)
+                    {
+                      
+                      if(crime.latitude ==data[x].latitude){
+                        data[x].numerIncidents+=crime.numerIncidents;
+                       
+                      encontre++
+                      }
+                      
+                    }
+                  }
+                  if(encontre==0){
+                    
+                    data.push(crime);}
+                  
                 }
               });
             }
           });
+
+                  var pos=0;
+                  for(var x=0;x<data.length;x++)
+                  {
+                    switch(pos)
+                    {
+                      case 0:
+                        { data[x].latitude =data[x].latitude+(.0005);
+                          data[x].longitude = data[x].longitude+(.0005);
+                          pos=1;
+                          break;
+                        }
+                      case 1: { data[x].latitude =data[x].latitude+(-.0005);
+                        data[x].longitude = data[x].longitude+(.0005);
+                        pos=2;
+                        break;
+                      }
+                      case 2: { data[x].latitude =data[x].latitude+(-.0005);
+                        data[x].longitude = data[x].longitude+(-.0005);
+                        pos=3;
+                        break;
+                      }
+                      case 3: { data[x].latitude =data[x].latitude+(.0005);
+                        data[x].longitude = data[x].longitude+(-.0005);
+                        pos=4;
+                        break;
+                      }
+                      case 4: { data[x].latitude =data[x].latitude;
+                        data[x].longitude = data[x].longitude+(-.0005);
+                        pos=5;
+                        break;
+                      }
+                      case 5: { data[x].latitude =data[x].latitude+(-.0005);
+                        data[x].longitude = data[x].longitude;
+                        pos=6;
+                        break;
+                      }
+                      case 6: { data[x].latitude =data[x].latitude+(.0005);
+                        data[x].longitude = data[x].longitude;
+                        pos=7;
+                        break;
+                      }
+                      case 7: { data[x].latitude =data[x].latitude;
+                        data[x].longitude = data[x].longitude+(.0005);
+                        pos=8;
+                        break;
+                      }
+                      case 8: { data[x].latitude =data[x].latitude;
+                        data[x].longitude = data[x].longitude;
+                        pos=0;
+                        break;
+                      }
+
+                    }
+                    //data[x].latitude =data[x].latitude+(.0002*(data[x].app_crime_act_id-1));
+                    //data[x].longitude = data[x].longitude+(.0002*(data[x].app_crime_act_id-1));
+                    data[x].description="num:"+data[x].numerIncidents;
+                    //data[x].name+="num:"+data[x].numerIncidents;
+                    
+                  }
+                  
+          console.log(data);
 
           tempCrimeMap.data = data;
           tempCrimeMap.heatmap_point_size = calculateHeatmapPonitSize(data);
@@ -101,7 +192,7 @@ export async function getCrimeAreasMap(token, latitude, longitude) {
     headers: myHeaders,
   };
 
-  return fetch(`${Config.NAMIQUI_GATEWAY}/api/core/polygon/byLatLngRadius?lat=${latitude}&lng=${longitude}&radius=2000`, requestOptions)
+  return fetch(`${Config.NAMIQUI_GATEWAY}/api/core/polygon/byLatLngRadius?lat=${latitude}&lng=${longitude}&radius=1000`, requestOptions)
     .then((response) => response.json())
     .then((result) => result)
     .catch((error) => {

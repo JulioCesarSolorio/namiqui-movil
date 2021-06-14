@@ -29,8 +29,7 @@ export default function ModifyUserInfoScreen({ navigation }) {
   const {
     control, handleSubmit, errors, setValue,
   } = useForm({
-    defaultValues: user, // datos del usuario
-  });
+    defaultValues: user});
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState('Alerta');
   const [alertImage, setAlertImage] = useState(failureIcon);

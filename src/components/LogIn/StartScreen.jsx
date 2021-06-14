@@ -76,7 +76,7 @@ export default function StartScreen({ navigation }) {
         </View>
       </Content>
       <View style={{ padding: 10 }}>
-        <Text>Versión 1.0.3</Text>
+        <Text>Versión 1.0</Text>
       </View>
     </Container>
   );

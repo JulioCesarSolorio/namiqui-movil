@@ -4,10 +4,16 @@ import { Text } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import backIcon from '../assets/icons/Icon_arrow_left.png';
 import drawerIcon from '../assets/icons/Icon_Menu.png';
+import menuIconHelp from '../assets/icons/Menu_Icon_Help.png';
+import { useSelector } from 'react-redux';
 
 export default function NamiquiNavHeader({
-  scene, previous, navigation, authorized,
+  scene,
+  previous,
+  navigation,
+  authorized,
 }) {
+  const notification = useSelector((state) => state.userReducers.notification);
   const { options } = scene.descriptor;
   const title = options.headerTitle !== undefined
     ? options.headerTitle
@@ -29,7 +35,7 @@ export default function NamiquiNavHeader({
     const { toggleDrawer } = navigation;
     return (
       <Pressable style={{ height: 20, position: 'absolute', left: 20 }} onPress={toggleDrawer}>
-        <Image source={drawerIcon} style={{ height: 28, width: 28, resizeMode: 'contain' }} />
+        <Image source={notification?.newNotification ? menuIconHelp : drawerIcon} style={{ height: 28, width: 28, resizeMode: 'contain' }} />
       </Pressable>
     );
   }

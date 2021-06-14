@@ -54,12 +54,12 @@ function LogInScreen({ navigation }) {
           setAlertTitle('Error');
           setAlertText('No tienes conexión a internet');
           setAlertImage(failureIcon);
-        } else if (response && !response.error) {
+        } else if (response) {
+          console.log("entre sin error");
           const token = response.access_token;
           const { username } = response.info;
-          messaging()
-            .getToken()
-            .then((FCMtoken) => {
+
+          messaging().getToken().then((FCMtoken) => {
               console.log('FCM token on log in', FCMtoken);
               updateFCMToken(username, FCMtoken, token);
               return response;
@@ -71,7 +71,15 @@ function LogInScreen({ navigation }) {
                 dispatch(storeUserConfig(response.data.configurations));
               }
             });
-          dispatch(logIn({ ...response.info }));
+            console.log("aqui los namiusers: JRC");
+          console.log(  response.info.namiusers);
+          dispatch(logIn({ ...response.info,namiusers:response.info.namiusers,
+            address:response.info.address.address,
+            "countryId": response.info.address.countryId,
+            "address_state_id": response.info.address.address_state_id,
+            "address_cp": response.info.address.address_cp,
+            "address_city": response.info.address.address_city,
+            "address_colony": response.info.address.address_colony }));
           dispatch(storeJWT(response.access_token, getExpirationDate(response.expires_in)));
           dispatch(storeRefreshToken(response.refresh_token));
           console.log('navigating to user Home');
@@ -112,7 +120,7 @@ function LogInScreen({ navigation }) {
           <UserInputPassword
             errors={errors}
             control={control}
-            placeholder="Password"
+            placeholder="Password Alfredo malo"
             name="password"
             iconComponent={<NamiquiInputIcon source={IconPassword} />}
           />

@@ -35,7 +35,7 @@ export default function Root(props) {
       && nextAppState === 'active'
     ) {
       console.log('App has come to the foreground!');
-      silentRefreshJWT(currentRefreshToken, dispatch, currentExpiration);
+      silentRefreshJWT(currentRefreshToken, dispatch, currentExpiration)
     }
     appState.current = nextAppState;
   }, [dispatch, store]);
@@ -76,18 +76,24 @@ export default function Root(props) {
   });
 
   useEffect(() => {
-    // Assume a message-notification contains a "type" property in the data payload of the screen to open
+    // 
+    //console.log('JRC Assume a message-notification contains a "type" property in the data payload of the screen to open');
     messaging()
       .getToken()
       .then((token) => console.log('FCM token', token));
 
-    messaging().onNotificationOpenedApp((remoteMessage) => {
-      console.log(
-        'Notification caused app to open from background state:',
-        remoteMessage.notification,
-      );
-      dispatch(storeNotification(remoteMessage));
-    });
+    try {
+      messaging().onNotificationOpenedApp((remoteMessage) => {
+        console.log(
+          'Notification caused app to open from background state:',
+          remoteMessage.notification,
+        );
+        dispatch(storeNotification(remoteMessage));
+      });
+    }
+    catch (error) {
+      console.log(error);
+    };
 
     // Check whether an initial notification is available
     messaging()
@@ -104,23 +110,40 @@ export default function Root(props) {
       });
 
     const unsubscribe = messaging().onMessage(async (remoteMessage) => {
-      console.log('seeting notification as ', remoteMessage.notification);
-      dispatch(storeNotification(remoteMessage));
+      if (remoteMessage?.notification?.title === "chat") {
+        console.log('setting notification with ', "newNotification: true!");
+        dispatch(storeNotification({newNotification: true, ...remoteMessage}));
+      } else {
+        console.log('setting notification from inside app as ', remoteMessage);
+        dispatch(storeNotification(remoteMessage));
+      }
     });
     return unsubscribe;
   }, [dispatch, setLoading]);
 
   function getNavigation() {
     if (JWT) {
-      if (notification) {
+      if (notification?.notification?.title === "chat") {
+        return <AuthorizedDrawer initialRoute="Chat" />;
+      }
+      if (notification?.notification?.title) {
         return (
           <NotificationStack />
         );
       }
       return <AuthorizedDrawer />;
     }
-    return <UnauthorizedStack initialRoute={initialRoute} />;
+    return <UnauthorizedStack />;
   }
+
+  const linking = {
+    prefixes: ['https://namiqui.com', 'namiqui://'],
+    config: {
+      screens: {
+        Conversaciones: 'Conversaciones',
+      },
+    },
+  };
 
   return (
     <NavigationContainer>

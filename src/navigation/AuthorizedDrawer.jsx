@@ -13,22 +13,28 @@ import PodcastScreen from '../components/Podcast/PodcastScreen';
 import GetProScreen from '../components/GetPro/GetProScreen';
 import HelpActionScreen from '../components/Help/HelpActionScreen';
 import ChatScreen from '../components/Chat/Chat';
+import ConversationsScreen from '../components/Chat/Conversations';
 import HomeScreen from '../components/HomeScreen';
 import ConfiguracionUsuario from '../components/User/Conf/ConfiguracionUsuario';
 import { logOut } from '../actions';
 import ProfileCard from '../components/elements/users/ProfileCard';
-import { NamiquiDrawerItem } from '../components/styledComponents';
+import { NamiquiDrawerItem, NamiquiDrawerItemLink } from '../components/styledComponents';
 import menuIconMap from '../assets/icons/Menu_Icon_Map.png';
 import menuIconConfig from '../assets/icons/Menu_Icon_Config.png';
 import menuIconHelp from '../assets/icons/Menu_Icon_Help.png';
 import menuIconPodcast from '../assets/icons/Menu_Icon_Podcast.png';
 import menuIconEndSession from '../assets/icons/Menu_Icon_End_Session.png';
+import menuIconCorreo from '../assets/icons/Icon_correo.png';
+import menuIconQuestion from '../assets/icons/Icon_Question.png';
+
+
 
 const Drawer = createDrawerNavigator();
 
 function LogOutDrawerContent(props) {
   const { navigation } = props;
   const user = useSelector((state) => state.userReducers.user);
+  const notification = useSelector((state) => state.userReducers.notification);
   const dispatch = useDispatch();
   return (
     <View style={{ flex: 1, position: 'relative', paddingTop: 0 }} {...props}>
@@ -38,8 +44,12 @@ function LogOutDrawerContent(props) {
       <NamiquiDrawerItem navigation={navigation} label="Config Ayúdame" screen="Ayuda" icon={menuIconHelp} />
       <NamiquiDrawerItem navigation={navigation} label="Configuración" icon={menuIconConfig} />
       <NamiquiDrawerItem navigation={navigation} label="Podcast" icon={menuIconPodcast} />
-      <NamiquiDrawerItem navigation={navigation} label="Vuélvete PRO" icon={menuIconPodcast} />
-      <NamiquiDrawerItem navigation={navigation} label="Chat" icon={menuIconPodcast} screen="Chat"/>
+      <NamiquiDrawerItem navigation={navigation} label="Vuélvete PRO" icon={menuIconHelp} />
+
+      <NamiquiDrawerItem navigation={navigation} label="Chat Namiusers" icon={notification?.newNotification ? menuIconHelp : menuIconCorreo} />
+      <NamiquiDrawerItemLink link="http://wa.link/2t1a0h" label="Contactanos" icon={menuIconQuestion} />
+     
+
 
       <View
         style={{
@@ -81,10 +91,12 @@ function LogOutDrawerContent(props) {
   );
 }
 
-export default function AuthorizedDrawer() {
+export default function AuthorizedDrawer(props) {
+  const { initialRoute } = props
+  console.log('AuthDrawer initialRoute ', initialRoute);
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName={initialRoute || "Home"}
       drawerContent={(props) => <LogOutDrawerContent {...props} />}
       drawerStyle={{
         backgroundColor: '#1E1E1F',
@@ -108,10 +120,15 @@ export default function AuthorizedDrawer() {
       <Drawer.Screen name="Chat">
         {(props) => <ScreenWithHeader screenComponent={ChatScreen} screenName="Chat" />}
       </Drawer.Screen>
+      <Drawer.Screen name="Chat Namiusers">
+        {(props) => <ScreenWithHeader screenComponent={ConversationsScreen} screenName="Chat Namiusers" />}
+      </Drawer.Screen>
       <Drawer.Screen name="Pedir Ayuda" component={HelpActionScreen} />
       <Drawer.Screen name="Configuración">
         {(props) => <ScreenWithHeader screenComponent={ConfiguracionUsuario} screenName="Configuración" />}
       </Drawer.Screen>
+
+
     </Drawer.Navigator>
   );
 }
