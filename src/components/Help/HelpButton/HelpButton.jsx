@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import HelpButtonAndroid from './HelpButtonAndroid';
+//import HelpButtonAndroid from './HelpButtonAndroid';
 import { colors } from '../../../style';
 import { storeShowiOSButton } from '../../../actions';
 import { NamiquiButton } from '../../styledComponents';
@@ -10,7 +10,7 @@ export default function HelpButton(props) {
   const {
     showingHelpButton, setShowingHelpButton, navigation, dispatch, showingIOSButton,
   } = props;
-  if (Platform.OS === 'android') {
+  /*if (Platform.OS === 'android') {
     return (
       <HelpButtonAndroid
         navigation={navigation}
@@ -18,7 +18,7 @@ export default function HelpButton(props) {
         setShowingHelpButton={setShowingHelpButton}
       />
     );
-  }
+  }*/
   if (Platform.OS === 'ios') {
     return (
       <View style={{

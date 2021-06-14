@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+/*import React, { useEffect } from 'react';
 import {
   View, Platform, DeviceEventEmitter, Linking, AppState,
 } from 'react-native';
@@ -78,6 +78,8 @@ export default function HelpButtonAndroid(props) {
                 routes: [{ name: 'Pedir Ayuda' }],
             });
             */
+
+            /*
             props.navigation.navigate('Pedir Ayuda');
           }, 500);
           break;
@@ -129,3 +131,4 @@ export default function HelpButtonAndroid(props) {
 
   );
 }
+*/

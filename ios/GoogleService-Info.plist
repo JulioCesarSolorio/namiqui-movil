@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>392595409567-bvlp3o87eg8alc6fdo27ks5lg3mlmo16.apps.googleusercontent.com</string>
+	<string>487383892456-4muikb5hv34kvr2rnbv52jdkl6in0ju5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.392595409567-bvlp3o87eg8alc6fdo27ks5lg3mlmo16</string>
+	<string>com.googleusercontent.apps.487383892456-4muikb5hv34kvr2rnbv52jdkl6in0ju5</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDV6Fh_gK0G4rehHyrlux4GNPf9aJCOKjQ</string>
+	<string>AIzaSyDwZNSRJ-8xm2yPTlxlH8vyepMnAWnb-eg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>392595409567</string>
+	<string>487383892456</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.namiqui.namiquiapp</string>
 	<key>PROJECT_ID</key>
-	<string>namiqui-f3019</string>
+	<string>namiqui-c5397</string>
 	<key>STORAGE_BUCKET</key>
-	<string>namiqui-f3019.appspot.com</string>
+	<string>namiqui-c5397.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:392595409567:ios:1e7821491db5847f79b0aa</string>
-	<key>DATABASE_URL</key>
-	<string>https://namiqui-f3019.firebaseio.com</string>
+	<string>1:487383892456:ios:ed380ce9eca6006189e45d</string>
 </dict>
 </plist>

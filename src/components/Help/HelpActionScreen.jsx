@@ -15,7 +15,7 @@ import { SwitchAction } from '../elements/forms/namiquiForm';
 import NamiUserLabel, { getNamiusersUsernameInText } from '../elements/users/NamiUserLabel';
 import HelpCancelScreen from './HelpCancelScreen';
 import HelpSendAlertScreen from './HelpSendAlertScreen';
-import { closeHelpButton } from './HelpButton/HelpButtonAndroid';
+//import { closeHelpButton } from './HelpButton/HelpButtonAndroid';
 
 const Stack = createStackNavigator();
 
@@ -69,7 +69,7 @@ function HelpActionView({ navigation }) {
   useFocusEffect(
     useCallback(() => {
       countdown = 10;
-      closeHelpButton();
+      //closeHelpButton();
       initUserConfigurationActions();
       setAlertCounter(countdown);
 

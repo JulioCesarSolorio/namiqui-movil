@@ -218,7 +218,7 @@ export function checkIfEmailExists(email) {
   const myHeaders = new Headers();
 
   const raw = '';
-
+  console.log(Config.NAMIQUI_GATEWAY);
   const requestOptions = {
     method: 'GET',
     headers: myHeaders,
