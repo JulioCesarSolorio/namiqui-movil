@@ -22,8 +22,8 @@ export default function HelpScreen({ navigation }) {
   const { username } = user;
   const token = useSelector((state) => state.userReducers.JWT);
   const userConfig = useSelector((state) => state.userReducers.config);
-  const [callEnabled, setCallEnabled] = useState(userConfig ? userConfig.CONF_ALERT_ACTION_CALL911 !== 'false' : true);
-  const [notificationEnabled, setNotificationEnabled] = useState(userConfig ? userConfig.CONF_ALERT_ACTION_ALERT_USERS !== 'false' : true);
+  const [callEnabled, setCallEnabled] = useState(userConfig ? userConfig.alert911 !== 2 : true);
+  const [notificationEnabled, setNotificationEnabled] = useState(userConfig ? userConfig.alertUser !== 2 : true);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState('Alerta');
   const [alertImage, setAlertImage] = useState(failureIcon);
@@ -40,19 +40,20 @@ export default function HelpScreen({ navigation }) {
   }
 
   function saveSettings() {
-    const configurations = [
+    const now = new Date().toISOString();
+    console.log(userConfig);
+    const configurations = 
       {
-        key_name: 'CONF_ALERT_ACTION_ALERT_USERS',
-        key_value: notificationEnabled ? 'true' : 'false',
-        data_type: 'BOOLEAN',
-      },
-      {
-        key_name: 'CONF_ALERT_ACTION_CALL911',
-        key_value: callEnabled ? 'true' : 'false',
-        data_type: 'BOOLEAN',
-      },
-    ];
+        alertUser:  notificationEnabled ? 1 : 2,
+        alert911:  callEnabled ? 1 : 2,
+        userId:userConfig.userId,
+        created: now
+      }
+     
+    ;
     setLoading(true);
+    console.log("JRC Checale aqui!!!");
+    console.log(userConfig);
     saveUserConfig({ username, configurations, token })
       .then((response) => {
         // on response of API call

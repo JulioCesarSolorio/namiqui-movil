@@ -15,7 +15,8 @@ import { SwitchAction } from '../elements/forms/namiquiForm';
 import NamiUserLabel, { getNamiusersUsernameInText } from '../elements/users/NamiUserLabel';
 import HelpCancelScreen from './HelpCancelScreen';
 import HelpSendAlertScreen from './HelpSendAlertScreen';
-//import { closeHelpButton } from './HelpButton/HelpButtonAndroid';
+import { closeHelpButton } from './HelpButton/HelpButtonAndroid';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 const Stack = createStackNavigator();
 
@@ -28,12 +29,13 @@ function HelpActionView({ navigation }) {
 
   //= ======================== USER ALERTS ======================
   const userConfig = useSelector((state) => state.userReducers.config);
-  const { CONF_ALERT_ACTION_CALL911, CONF_ALERT_ACTION_ALERT_USERS } = userConfig;
+  const { alert911, alertUser } = userConfig;
   const [call911, setCall911] = useState(true);
   const [alertNamiquiUsers, setAlertNamiquiUsers] = useState(true);
-  console.log('current alert states - ', CONF_ALERT_ACTION_CALL911, CONF_ALERT_ACTION_ALERT_USERS);
+  console.log('current alert states - ', alert911, alertUser);
   //= ============== COUNTER =================
   const [alertCounter, setAlertCounter] = useState(10);
+  const [alertSending, setAlertSending] = useState(false);
   let countdown = 10;
 
   /*
@@ -43,43 +45,52 @@ function HelpActionView({ navigation }) {
     () => {
       console.log('initUserConfigurationActions userConfig', userConfig);
 
-      actionCall911 = userConfig ? CONF_ALERT_ACTION_CALL911 !== 'false' : true; // user.configuration.CONF_CALL_911
-      actionAlertNamiquiUsers = userConfig ? CONF_ALERT_ACTION_ALERT_USERS !== 'false' : true; // user.configuration.CONF_ALERT_NAMIQUI_USERS
-
-      setCall911(actionCall911);
-      setAlertNamiquiUsers(actionAlertNamiquiUsers);
-    }, [userConfig, CONF_ALERT_ACTION_CALL911, CONF_ALERT_ACTION_ALERT_USERS],
+      actionCall911 = userConfig ? alert911 !== 2 : 1; // user.configuration.CONF_CALL_911
+      actionAlertNamiquiUsers = userConfig ? alertUser !== 2 : 1; // user.configuration.CONF_ALERT_NAMIQUI_USERS
+      
+      setCall911(actionCall911==1);
+      setAlertNamiquiUsers(actionAlertNamiquiUsers==1);
+    }, [userConfig, call911, alertUser],
   );
 
   function send() {
+    setAlertSending(true);
     BackgroundTimer.stopBackgroundTimer();
+    countdown = 10;
     navigation.navigate('Solicitud de Ayuda', {
       call911: actionCall911,
       alertNamiquiUsers: actionAlertNamiquiUsers,
     });
+    
   }
   /*
     cada vez que se actualice el state, actualizar tambien los valores
     */
   useEffect(() => {
-    actionCall911 = call911;
-    actionAlertNamiquiUsers = alertNamiquiUsers;
+    actionCall911 = call911==1;
+    actionAlertNamiquiUsers = alertNamiquiUsers==1;
   }, [call911, alertNamiquiUsers]);
 
   useFocusEffect(
     useCallback(() => {
       countdown = 10;
-      //closeHelpButton();
+      closeHelpButton();
       initUserConfigurationActions();
       setAlertCounter(countdown);
 
       BackgroundTimer.runBackgroundTimer(() => {
         countdown -= 1;
-        if (countdown >= 0) {
-          Vibration.vibrate(100);
+
+        if (countdown >= 0 ) {
+          if(!alertSending)
+        {
+          //Vibration.vibrate(100);
           setAlertCounter(countdown);
+        }
         } else {
-          send();
+          if(!alertSending)
+          {send();}
+          BackgroundTimer.stopBackgroundTimer();
         }
       }, 1000);
 
@@ -93,7 +104,9 @@ function HelpActionView({ navigation }) {
     BackgroundTimer.stopBackgroundTimer();
     countdown = 10;
     setAlertCounter(countdown);
+    setAlertSending(false);
     navigation.navigate('Cancelar Alerta');
+    
   }
 
   return (
@@ -161,12 +174,16 @@ function HelpActionView({ navigation }) {
             full
             text={<Text>ENVIAR YA</Text>}
             onPress={() => {
+              BackgroundTimer.stopBackgroundTimer();
               send();
+              BackgroundTimer.stopBackgroundTimer();
             }}
           />
           <View>
             <TouchableOpacity onPress={() => {
+               BackgroundTimer.stopBackgroundTimer();
               cancel();
+              BackgroundTimer.stopBackgroundTimer();
             }}
             >
               <Text style={{ textAlign: 'center', textDecorationLine: 'underline' }}>Cancelar Alerta</Text>

@@ -18,6 +18,7 @@ export default function HelpSendAlertScreen({ navigation, route }) {
   const user = useSelector((state) => state.userReducers.user);
   const token = useSelector((state) => state.userReducers.JWT);
   const { username } = user;
+  const { id } = user;
   let alertNamiquiUsertAttempts = 0;
   const MAX_NUMBER_ATTEMPTS_ALERT_NAMIQUI_USERS = 5;
 
@@ -36,14 +37,20 @@ export default function HelpSendAlertScreen({ navigation, route }) {
   //= ============================== LLAMADA DE ALERTA ====================================
 
   function call911() {
+
     if (route.params && route.params.call911) {
-      RNImmediatePhoneCall.immediatePhoneCall('912');
+      RNImmediatePhoneCall.immediatePhoneCall('911');
       setCall911Report({
         status: 'COMPLETE',
         success: true,
         message: 'Llamada realizada satisfactoriamente',
       });
     }
+    else{ setCall911Report({
+      status: 'COMPLETE',
+      success: false,
+      message: 'Llamada no configurada',
+    });}
   }
 
   //= ================================ ALERTAR NAMIQUI USERS ====================================
@@ -56,7 +63,7 @@ export default function HelpSendAlertScreen({ navigation, route }) {
     });
 
     sendAyudameAlert({
-      token, username, lat, lng,
+      token, id, lat, lng,
     }).then((response) => {
       if (response === undefined) {
         setUsersNotificationReport({
@@ -85,6 +92,7 @@ export default function HelpSendAlertScreen({ navigation, route }) {
   }
 
   function alertNamiquiUsers() {
+   
     if (route.params && route.params.alertNamiquiUsers) {
       alertNamiquiUsertAttempts += 1;
 
@@ -143,7 +151,7 @@ export default function HelpSendAlertScreen({ navigation, route }) {
   useEffect(() => {
     console.log(route.params);
 
-    Vibration.vibrate(2000);
+    //Vibration.vibrate(2000);
     alertNamiquiUsertAttempts = 0;
 
     alertNamiquiUsers();
