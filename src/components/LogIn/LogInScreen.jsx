@@ -120,7 +120,7 @@ function LogInScreen({ navigation }) {
           <UserInputPassword
             errors={errors}
             control={control}
-            placeholder="Password Alfredo malo"
+            placeholder="Password"
             name="password"
             iconComponent={<NamiquiInputIcon source={IconPassword} />}
           />

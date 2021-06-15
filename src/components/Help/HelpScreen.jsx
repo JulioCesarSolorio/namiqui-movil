@@ -109,7 +109,7 @@ export default function HelpScreen({ navigation }) {
               fontWeight: 'bold',
             }}
             >
-              Selecciona el tipo de alerta de auxilio y acciones por deafult
+              Selecciona el tipo de alerta de auxilio y acciones por default
             </Text>
           </View>
           <View style={{
@@ -159,7 +159,7 @@ export default function HelpScreen({ navigation }) {
           }}
           >
             <Text style={{ fontSize: 18 }}>
-              La activación de las alertas ociosas o las intencionadas pueden provocar el desvió de recursos económicos y humanos por lo que en caso de detectarse una irresponsabilidad
+              La activación de las alertas ociosas o las mal intencionadas pueden provocar el desvió de recursos económicos y humanos por lo que en caso de detectarse una irresponsabilidad
               por parte de un Namuser este será sancionado con la desactivación de su cuenta en todas las plataformas de Namiqui.
             </Text>
           </View>
