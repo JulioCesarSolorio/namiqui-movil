@@ -30,6 +30,7 @@ const App = () => {
         <PersistGate loading={null} persistor={persistor}>
           <StyleProvider style={getTheme(platform)}>
             <SafeAreaView style={{ flex: 1, backgroundColor: '#1E1E1F' }}>
+              {/* CHANGE TEST KEY TO PRODUCTION KEY */}
               <StripeProvider publishableKey={Config.STRIPE_PUBLISHABLE_KEY}>
                 <Root setLoading={setLoading} />
               </StripeProvider>

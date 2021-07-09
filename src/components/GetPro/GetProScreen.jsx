@@ -27,7 +27,7 @@ export default function GetProScreen({ navigation }) {
       <Content>
         <NamiquiTitle text="¡Próximamente!" />
         <NamiquiLogo />
-        <NamiquiButton text="Obtén Namiqui Pro" onPress={handlePressGetPro} />
+        <NamiquiButton text="Obtén Namiqui Pro" onPress={handlePressGetPro} style={{marginTop: 50}}/>
         {product && <StripeModal navigation={navigation} closeModal={handleCloseModal} visible={modalVisible} product={product} />}
       </Content>
       <HelpButtonIOS navigation={navigation} showing={showingIOSButton} />
