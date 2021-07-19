@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {
-  TextInput, View, Image, Modal, ActivityIndicator,Linking
+  TextInput, View, Image, Modal, ActivityIndicator, Linking
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
@@ -33,7 +33,7 @@ function NamiquiLogo(props) {
 }
 
 function NamiquiInput(props) {
-  const { iconComponent, bordered } = props;
+  const { iconComponent, bordered, multiline } = props;
   return (
     <View
       style={{
@@ -50,7 +50,7 @@ function NamiquiInput(props) {
         minHeight: 50,
       }}
     >
-      <TextInput style={styles.TextInput} {...props} placeholderTextColor="#666" />
+      <TextInput multiline={multiline} numberOfLines={multiline ? 4 : undefined} textAlignVertical={multiline ? 'top' : undefined} style={styles.TextInput} {...props} placeholderTextColor="#666" />
       {iconComponent || null}
     </View>
   );
