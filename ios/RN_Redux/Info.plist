@@ -37,6 +37,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Namiqui allows users to take fotos which will be stored on their devices as descriptors for lost or missing objects.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Namiqui allows users to choose fotos stored on their devices as descriptors for lost or missing objects.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Namiqui displays the user's location on a map and, when instructed to do so by the user, shows the user's location to the user's contacts and/or authorities in order to request assistance.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
