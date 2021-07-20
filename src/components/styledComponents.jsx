@@ -94,7 +94,7 @@ function NamiquiCard(props) {
 
 function NamiquiButton(props) {
   const {
-    style, icon, text, textStyle, onPress, dark, loading,
+    style, icon, text, textStyle, onPress, dark, loading, disabled
   } = props;
   let buttonText;
   if (typeof text === 'string') {
@@ -118,7 +118,7 @@ function NamiquiButton(props) {
           elevation: 5,
           ...style,
         }}
-        disabled={loading}
+        disabled={loading || disabled}
       >
         <LinearGradient
           style={{
