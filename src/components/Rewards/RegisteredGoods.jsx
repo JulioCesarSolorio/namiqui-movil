@@ -25,7 +25,7 @@ export default function RegisteredGoods({ navigation }) {
     if (isFocused) {
       getRegisteredGoods();
     }
-  }, [isFocused])
+  }, [isFocused]);
 
   const {
     control, handleSubmit, errors

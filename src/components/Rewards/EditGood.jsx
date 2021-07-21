@@ -137,8 +137,8 @@ export default function EditGood(props) {
     <Container style={{ flexGrow: 1 }}>
       <Content style={{ paddingHorizontal: 20 }}>
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
-          <NamiquiTitle text={params.good ? "Editar un bien" : "Registrar un bien"} />
-          <NamiquiButton dark text="Borrar este bien" onPress={removeGood} style={{ width: '30%' }} textStyle={{ fontSize: 12 }} />
+          <NamiquiTitle text={params?.good ? "Editar un bien" : "Registrar un bien"} />
+          { params?.good && <NamiquiButton dark text="Borrar este bien" onPress={removeGood} style={{ width: '30%' }} textStyle={{ fontSize: 12 }} />}
         </View>
         <Form>
           <Controller

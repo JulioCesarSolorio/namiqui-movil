@@ -4,6 +4,7 @@ import NamiquiNavHeader from '../components/NamiquiNavHeader';
 import RewardsHome from '../components/Rewards/RewardsHome';
 import RegisteredGoods from '../components/Rewards/RegisteredGoods';
 import EditGood from '../components/Rewards/EditGood';
+import LaunchReward from '../components/Rewards/LaunchReward';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +20,7 @@ export default function RewardsStack() {
       <Stack.Screen name="Rewards" component={RewardsHome} options={{ headerShown: false }} />
       <Stack.Screen name="Registered Goods" component={RegisteredGoods} options={{ headerShown: false }} />
       <Stack.Screen name="Edit Good" component={EditGood} options={{ headerShown: false }} />
-
+      <Stack.Screen name="Launch Reward" component={LaunchReward} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
