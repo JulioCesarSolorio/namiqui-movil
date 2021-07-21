@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {
-  TextInput, View, Image, Modal, ActivityIndicator, Linking
+  TextInput, View, Image, Modal, ActivityIndicator, Linking, ScrollView
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
@@ -244,12 +244,14 @@ function NamiquiAlert(props) {
         }
         {
           message ? (
-            <Text style={{
-              color: '#000', fontSize: 24, textAlign: 'center', marginVertical: 15,
-            }}
-            >
-              {message}
-            </Text>
+            <ScrollView style={{ maxHeight: '50%' }}>
+              <Text style={{
+                color: '#000', fontSize: 24, textAlign: 'center', marginVertical: 15,
+              }}
+              >
+                {message}
+              </Text>
+            </ScrollView>
           )
             : null
         }
