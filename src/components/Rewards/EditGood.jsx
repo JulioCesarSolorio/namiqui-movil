@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import uuid from 'react-native-uuid';
 import failureIcon from '../../assets/icons/alerta_2.png';
 import successIcon from '../../assets/icons/Icon_Verificacion.png';
+import RewardItemImage from './RewardItemImage';
 
 export default function EditGood(props) {
   const { navigation, route } = props;
@@ -120,19 +121,6 @@ export default function EditGood(props) {
     )
   }
 
-  function ItemImage(props) {
-    return (
-      <View style={{ height: 80, width: 80, margin: 20 }}>
-        <Image
-          source={props.source}
-          style={{
-            width: 80,
-            height: 80,
-          }}
-        />
-      </View>)
-  }
-
   return (
     <Container style={{ flexGrow: 1 }}>
       <Content style={{ paddingHorizontal: 20 }}>
@@ -182,7 +170,7 @@ export default function EditGood(props) {
         {goodPhotos.length > 0 && <Text>Fotos para identificar el bien</Text>}
         <View>
           <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
-            {goodPhotos.map((image, i) => <ItemImage source={{ uri: image }} key={i} />)}
+            {goodPhotos.map((image, i) => <RewardItemImage source={{ uri: image }} key={i} />)}
           </View>
         </View>
         <NamiquiButton text="Usar foto de galería" onPress={handleLaunchImageLibrary} style={{ marginTop: 30 }} />

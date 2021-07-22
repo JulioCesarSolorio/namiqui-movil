@@ -6,6 +6,7 @@ import { Alert, Image, View } from 'react-native';
 import { useForm } from 'react-hook-form';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Select } from '../elements/forms/namiquiForm';
+import RewardItemImage from './RewardItemImage';
 
 export default function RegisteredGoods({ navigation }) {
   const [registeredGoods, setRegisteredGoods] = useState();
@@ -50,19 +51,6 @@ export default function RegisteredGoods({ navigation }) {
     return pickerOptions;
   }
 
-  function ItemImage(props) {
-    return (
-      <View style={{ height: 80, width: 80, margin: 20 }}>
-        <Image
-          source={props.source}
-          style={{
-            width: 80,
-            height: 80,
-          }}
-        />
-      </View>)
-  }
-
   return (
     <Container style={{ flexGrow: 1 }}>
       <Content style={{ paddingHorizontal: 20 }}>
@@ -91,7 +79,7 @@ export default function RegisteredGoods({ navigation }) {
         {selectedGood?.description && <Text>Descripción: {selectedGood.description}</Text>}
         {selectedGood?.images && (
           <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
-            {selectedGood.images.map((image, i) => <ItemImage source={{ uri: image }} key={`${selectedGood.name}-${i}`} />)}
+            {selectedGood.images.map((image, i) => <RewardItemImage source={{ uri: image }} key={`${selectedGood.name}-${i}`} />)}
           </View>)}
 
         {selectedGood && <NamiquiButton disabled={!selectedGood} text="Editar Bien" onPress={goToEditGood} />}

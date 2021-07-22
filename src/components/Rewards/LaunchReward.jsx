@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Select } from '../elements/forms/namiquiForm';
 import { colors } from '../../style';
+import RewardItemImage from './RewardItemImage';
 
 export default function LaunchReward({ navigation }) {
   const [registeredGoods, setRegisteredGoods] = useState();
@@ -41,14 +42,14 @@ export default function LaunchReward({ navigation }) {
     console.log('values', values);
     if (values.selectedGood !== undefined) {
       setSelectedGood(values.selectedGood)
-      setFormValidaionErrors((state) => ({...state, selectedGood: false}))
+      setFormValidaionErrors((state) => ({ ...state, selectedGood: false }))
     }
   }
 
   function handleSelectAmount(amount) {
     console.log('amount', amount)
     setRewardAmount(amount)
-    setFormValidaionErrors((state) => ({...state, rewardAmount: false}))
+    setFormValidaionErrors((state) => ({ ...state, rewardAmount: false }))
   }
 
   function handleLaunchReward() {
@@ -59,21 +60,14 @@ export default function LaunchReward({ navigation }) {
     if (!rewardAmount) {
       errors.rewardAmount = 'true'
     }
-    setFormValidaionErrors(errors);
+    if (Object.keys(errors).length < 1) {
+      Alert.alert('this is where it would send the Reward to the back');
+      // Send reward to back, then navigate to ActiveRewards.
+      navigation.navigate('Active Rewards')
+    } else {
+      setFormValidaionErrors(errors);
+    }
   }
-
-  function ItemImage(props) {
-    return (
-      <View style={{ height: 80, width: 80, margin: 20 }}>
-        <Image
-          source={props.source}
-          style={{
-            width: 80,
-            height: 80,
-          }}
-        />
-      </View>)
-  };
 
   function AmountButton(props) {
     const { amount } = props;
@@ -142,7 +136,7 @@ export default function LaunchReward({ navigation }) {
         )}
         {selectedGood?.images && (
           <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
-            {selectedGood.images?.map((image, i) => <ItemImage source={{ uri: image }} key={`${selectedGood.name}-${i}`} />)}
+            {selectedGood.images?.map((image, i) => <RewardItemImage source={{ uri: image }} key={`${selectedGood.name}-${i}`} />)}
           </View>
         )}
         <Text>Cantidad de la recompensa</Text>
