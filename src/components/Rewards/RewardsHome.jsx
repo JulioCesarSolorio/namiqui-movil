@@ -29,8 +29,8 @@ export default function RewardsHome({ navigation }) {
       <Content>
         <NamiquiButton text="Lanzar Recompensa" onPress={handleLaunchReward} style={{ marginTop: 50 }} />
         <NamiquiButton text="Bienes Registrados" onPress={() => handleNavigate("Registered Goods")} style={{ marginTop: 50 }} />
-        <NamiquiButton text="Recompensas Activas" onPress={handlePress} style={{ marginTop: 50 }} />
-        <NamiquiButton text="Alertas Activas" onPress={handlePress} style={{ marginTop: 50 }} />
+        <NamiquiButton text="Recompensas Activas" onPress={() => handleNavigate("Active Rewards")} style={{ marginTop: 50 }} />
+        <NamiquiButton text="Alertas Activas" onPress={() => handleNavigate("Active Alerts")} style={{ marginTop: 50 }} />
         <NamiquiButton text="Iniciar Chat de Soporte" onPress={handlePress} style={{ marginTop: 50 }} />
         <NamiquiAlert
           image={alertIcon}
