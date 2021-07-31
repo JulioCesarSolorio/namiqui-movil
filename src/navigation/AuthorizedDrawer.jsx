@@ -10,7 +10,7 @@ import ModifyUserInfoScreen from '../components/User/Conf/ModifyUserInfoScreen';
 import HelpScreen from '../components/Help/HelpScreen';
 import ScreenWithHeader from '../components/ScreenWithHeader';
 import PodcastScreen from '../components/Podcast/PodcastScreen';
-import GetProScreen from '../components/GetPro/GetProScreen';
+//import GetProScreen from '../components/GetPro/GetProScreen';
 import HelpActionScreen from '../components/Help/HelpActionScreen';
 import ChatScreen from '../components/Chat/Chat';
 import ConversationsScreen from '../components/Chat/Conversations';
@@ -26,6 +26,7 @@ import menuIconPodcast from '../assets/icons/Menu_Icon_Podcast.png';
 import menuIconEndSession from '../assets/icons/Menu_Icon_End_Session.png';
 import menuIconCorreo from '../assets/icons/Icon_correo.png';
 import menuIconQuestion from '../assets/icons/Icon_Question.png';
+import MenuIconPro from '../assets/icons/Icon_Free.png';
 
 
 
@@ -44,7 +45,7 @@ function LogOutDrawerContent(props) {
       <NamiquiDrawerItem navigation={navigation} label="Config Ayúdame" screen="Ayuda" icon={menuIconHelp} />
       <NamiquiDrawerItem navigation={navigation} label="Configuración" icon={menuIconConfig} />
       <NamiquiDrawerItem navigation={navigation} label="Podcast" icon={menuIconPodcast} />
-      <NamiquiDrawerItem navigation={navigation} label="Vuélvete PRO" icon={menuIconHelp} />
+      
 
       <NamiquiDrawerItem navigation={navigation} label="Chat Namiusers" icon={notification?.newNotification ? menuIconHelp : menuIconCorreo} />
       <NamiquiDrawerItemLink link="http://wa.link/2t1a0h" label="Contactanos" icon={menuIconQuestion} />
@@ -114,9 +115,7 @@ export default function AuthorizedDrawer(props) {
       <Drawer.Screen name="Podcast">
         {(props) => <ScreenWithHeader screenComponent={PodcastScreen} screenName="Podcast" />}
       </Drawer.Screen>
-      <Drawer.Screen name="Vuélvete PRO">
-        {(props) => <ScreenWithHeader screenComponent={GetProScreen} screenName="Vuélvete PRO" />}
-      </Drawer.Screen>
+      
       <Drawer.Screen name="Chat">
         {(props) => <ScreenWithHeader screenComponent={ChatScreen} screenName="Chat" />}
       </Drawer.Screen>

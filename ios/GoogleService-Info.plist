@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>487383892456-4muikb5hv34kvr2rnbv52jdkl6in0ju5.apps.googleusercontent.com</string>
+	<string>487383892456-bah1up1nohsvs94t7lcfjo3h0sp8387d.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.487383892456-4muikb5hv34kvr2rnbv52jdkl6in0ju5</string>
+	<string>com.googleusercontent.apps.487383892456-bah1up1nohsvs94t7lcfjo3h0sp8387d</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDwZNSRJ-8xm2yPTlxlH8vyepMnAWnb-eg</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.namiqui.namiquiapp</string>
+	<string>com.namiqui.reactnative.app</string>
 	<key>PROJECT_ID</key>
 	<string>namiqui-c5397</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:487383892456:ios:ed380ce9eca6006189e45d</string>
+	<string>1:487383892456:ios:8f43506683cc93a789e45d</string>
 </dict>
 </plist>

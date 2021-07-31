@@ -32,11 +32,12 @@ function HelpActionView({ navigation }) {
   const { alert911, alertUser } = userConfig;
   const [call911, setCall911] = useState(true);
   const [alertNamiquiUsers, setAlertNamiquiUsers] = useState(true);
-  console.log('current alert states - ', alert911, alertUser);
+  
   //= ============== COUNTER =================
   const [alertCounter, setAlertCounter] = useState(10);
   const [alertSending, setAlertSending] = useState(false);
   let countdown = 10;
+  console.log('current alert states - ', alert911, alertUser,alertSending);
 
   /*
     aqui se setean las cofiguraciones de la BD
@@ -55,7 +56,7 @@ function HelpActionView({ navigation }) {
 
   function send() {
     setAlertSending(true);
-    BackgroundTimer.stopBackgroundTimer();
+    
     countdown = 10;
     navigation.navigate('Solicitud de Ayuda', {
       call911: actionCall911,
@@ -72,27 +73,35 @@ function HelpActionView({ navigation }) {
   }, [call911, alertNamiquiUsers]);
 
   useFocusEffect(
+    
     useCallback(() => {
+     
       countdown = 10;
       closeHelpButton();
       initUserConfigurationActions();
       setAlertCounter(countdown);
-
-      BackgroundTimer.runBackgroundTimer(() => {
-        countdown -= 1;
-
-        if (countdown >= 0 ) {
-          if(!alertSending)
-        {
-          //Vibration.vibrate(100);
-          setAlertCounter(countdown);
-        }
-        } else {
-          if(!alertSending)
-          {send();}
-          BackgroundTimer.stopBackgroundTimer();
-        }
-      }, 1000);
+      if(!alertSending){
+        BackgroundTimer.runBackgroundTimer(() => {
+          countdown -= 1;
+  
+          if (countdown >= 0 ) {
+            if(!alertSending)
+          {
+            //Vibration.vibrate(100);
+            setAlertCounter(countdown);
+          }
+          } else {
+            if(!alertSending)
+            {
+              send();
+              BackgroundTimer.clearTimeout(countdown);
+            }
+            BackgroundTimer.clearTimeout(countdown);
+            BackgroundTimer.stopBackgroundTimer();
+          }
+        }, 1000);
+      }
+    
 
       return () => {
         BackgroundTimer.stopBackgroundTimer();
@@ -169,16 +178,7 @@ function HelpActionView({ navigation }) {
           padding: 40,
         }}
         >
-          <NamiquiButton
-            style={{ marginTop: 50, marginBottom: 50 }}
-            full
-            text={<Text>ENVIAR YA</Text>}
-            onPress={() => {
-              BackgroundTimer.stopBackgroundTimer();
-              send();
-              BackgroundTimer.stopBackgroundTimer();
-            }}
-          />
+          
           <View>
             <TouchableOpacity onPress={() => {
                BackgroundTimer.stopBackgroundTimer();

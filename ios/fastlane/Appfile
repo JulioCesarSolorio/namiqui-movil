@@ -1,8 +1,8 @@
-app_identifier("com.namiqui.namiquiapp") # The bundle identifier of your app
+app_identifier("com.namiqui.reactnative.app") # The bundle identifier of your app
 apple_id("julio.solorio.ortega@outlook.com") # Your Apple email address
 
-itc_team_id("120953727") # App Store Connect Team ID
-team_id("Q6C98W2P58") # Developer Portal Team ID
+itc_team_id("1567808223") # App Store Connect Team ID
+team_id("5787RXCJ46") # Developer Portal Team ID
 
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile
