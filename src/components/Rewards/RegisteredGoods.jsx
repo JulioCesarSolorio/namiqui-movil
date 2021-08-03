@@ -28,13 +28,21 @@ export default function RegisteredGoods({ navigation }) {
     }
   }, [isFocused]);
 
+  useEffect(() => {
+    if (selectedGood && registeredGoods[selectedGood.goodId]) {
+      setSelectedGood(registeredGoods[selectedGood.goodId]);
+    } else {
+      setSelectedGood(undefined);
+    }
+  }, [registeredGoods])
+
   const {
     control, handleSubmit, errors
-  } = useForm({ defaultValues: { RegisteredGood: '' } });
+  } = useForm({ defaultValues: { SelectedGood: '' } });
 
   function onSubmit(value) {
-    console.log('setting as:', value['RegisteredGood'])
-    setSelectedGood(value['RegisteredGood']);
+    console.log('setting as:', value['SelectedGood'])
+    setSelectedGood(value['SelectedGood']);
   }
 
   function registerNewItem() {
@@ -48,6 +56,7 @@ export default function RegisteredGoods({ navigation }) {
   function makePickerOptions(registeredGoods) {
     let pickerOptions = {};
     Object.keys(registeredGoods).forEach(key => pickerOptions[key] = { name: registeredGoods[key].name, value: registeredGoods[key] })
+   console.log('pickerOptions', pickerOptions)
     return pickerOptions;
   }
 
@@ -65,7 +74,7 @@ export default function RegisteredGoods({ navigation }) {
         }}>
           <View style={{ minWidth: 200 }}>
             {registeredGoods && <Select
-              name="RegisteredGood"
+              name="SelectedGood"
               control={control}
               errors={errors}
               rules={{

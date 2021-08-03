@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { Select } from '../elements/forms/namiquiForm';
 import { colors } from '../../style';
 import RewardItemImage from './RewardItemImage';
+import ErrorText from '../elements/forms/ErrorText';
 
 export default function LaunchReward({ navigation }) {
   const [registeredGoods, setRegisteredGoods] = useState();
@@ -93,11 +94,7 @@ export default function LaunchReward({ navigation }) {
     )
   };
 
-  function ErrorText(props) {
-    return (
-      <Text style={{ fontSize: 12, color: colors.COLOR_DANGER }}>{props.children}</Text>
-    )
-  }
+
 
   return (
     <Container style={{ flexGrow: 1 }}>
@@ -108,7 +105,6 @@ export default function LaunchReward({ navigation }) {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-evenly',
-          marginVertical: 25
         }}>
           <View style={{ minWidth: 200 }}>
             {registeredGoods ? <Select
@@ -123,14 +119,15 @@ export default function LaunchReward({ navigation }) {
               :
               <Text>No cuentas con bienes registrados todavía.</Text>
             }
-            {formValidationErrors.selectedGood && <ErrorText>Favor de escoger un bien</ErrorText>}
           </View>
 
-          {registeredGoods && <NamiquiButton text="Seleccionar" onPress={handleSubmit(onSubmit)} style={{ width: 150 }} />}
+          {registeredGoods && <NamiquiButton text="Seleccionar" onPress={handleSubmit(onSubmit)} style={{ width: 150, borderWidth: formValidationErrors.selectedGood ? 1 : 0, borderColor: 'white' }} />}
         </View>
+        {formValidationErrors.selectedGood && <ErrorText>Favor de escoger un bien con el boton</ErrorText>}
+
         {selectedGood && (
           <>
-            <Text>Nombre del bien: {selectedGood.name}</Text>
+            <Text style={{ marginVertical: 25 }}>Nombre del bien: {selectedGood.name}</Text>
             <Text>Descripción del bien: {selectedGood.description}</Text>
           </>
         )}
@@ -139,7 +136,7 @@ export default function LaunchReward({ navigation }) {
             {selectedGood.images?.map((image, i) => <RewardItemImage source={{ uri: image }} key={`${selectedGood.name}-${i}`} />)}
           </View>
         )}
-        <Text>Cantidad de la recompensa</Text>
+        <Text style={{marginVertical: 10}}>Cantidad de la recompensa</Text>
         <View style={{ width: "100%", display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-evenly' }}>
           <AmountButton amount='500' />
           <AmountButton amount='1000' />
@@ -154,7 +151,7 @@ export default function LaunchReward({ navigation }) {
           El impuesto retenido es del 2% como ISR y 16% como IVA, la comisión para Namiqui es del 10%
         </Text>
 
-        <NamiquiButton text="Lanzar Ahora" onPress={handleLaunchReward} />
+        <NamiquiButton style={{marginTop: 25}} text="Lanzar Ahora" onPress={handleLaunchReward} />
       </Content>
     </Container>
   )

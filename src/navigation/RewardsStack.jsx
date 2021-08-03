@@ -10,6 +10,9 @@ import RewardDetail from '../components/Rewards/RewardDetail';
 import ActiveAlerts from '../components/Rewards/ActiveAlerts';
 import AlertDetail from '../components/Rewards/AlertDetail';
 import ClaimReward from '../components/Rewards/ClaimReward';
+import VerifyClaim from '../components/Rewards/VerifyClaim';
+import ClaimDetail from '../components/Rewards/ClaimDetail';
+import GetMoreInfo from '../components/Rewards/GetMoreInfo';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +34,9 @@ export default function RewardsStack() {
       <Stack.Screen name="Active Alerts" component={ActiveAlerts} options={{ headerShown: false }} />
       <Stack.Screen name="Alert Detail" component={AlertDetail} options={{ headerShown: false }} />
       <Stack.Screen name="Claim Reward" component={ClaimReward} options={{ headerShown: false }} />
+      <Stack.Screen name="Verify Claim" component={VerifyClaim} options={{ headerShown: false }} />
+      <Stack.Screen name="Claim Detail" component={ClaimDetail} options={{headerShown: false}} />
+      <Stack.Screen name="Get More Info" component={GetMoreInfo} options={{headerShown: false}} />
 
     </Stack.Navigator>
   );
