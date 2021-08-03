@@ -333,6 +333,25 @@ function NamiquiDrawerItemLink(props) {
   );
 }
 
+function NamiquiLoadingOverlay(props) {
+  const { loading } = props;
+  return (
+    <View style={{
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: 'rgba(255, 255, 255, 0.72)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
+      <ActivityIndicator size={50} color={colors.COLOR_SELECTED} />
+    </View>
+  )
+}
+
 export {
   NamiquiInput,
   NamiquiCard,
@@ -343,4 +362,5 @@ export {
   NamiquiInputIcon,
   NamiquiDrawerItem,
   NamiquiDrawerItemLink,
+  NamiquiLoadingOverlay
 };
