@@ -176,7 +176,7 @@ export default function EditGood(props) {
         <NamiquiButton text="Usar foto de galería" onPress={handleLaunchImageLibrary} style={{ marginTop: 30 }} />
         <NamiquiButton text="Tomar foto" onPress={handleLaunchCamera} style={{ marginTop: 30 }} />
         <NamiquiButton text="Guardar Registro" onPress={handleSubmit(saveToRegistry)} style={{ marginTop: 50 }} />
-        <NamiquiAlert image={alertData.image} title={alertData.title} message={alertData.message} closeModal={closeAlert} visible={alertData.visible} onDismiss={() => navigation.goBack()} />
+        <NamiquiAlert image={alertData?.image} title={alertData?.title} message={alertData?.message} closeModal={closeAlert} visible={alertData?.visible} onDismiss={() => navigation.goBack()} />
       </Content>
     </Container>
   )
