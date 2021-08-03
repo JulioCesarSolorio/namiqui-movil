@@ -24,7 +24,20 @@ export default function ActiveRewards({ navigation }) {
                 'https://cdn.shopify.com/s/files/1/0401/1835/4086/products/gorra-black-clover-live-lucky-hat-cap-hat-premium-clover-2-29800651620518_1800x1800.jpg?v=1626290898'
               ],
               address: 'PORFIRIO DIAZ 1550 COLONIA REVOLUCION CP 78214 PUEBLA PUEBLA.',
-              amount: '500'
+              amount: '500',
+              claims: [
+                {
+                  claimId: 'REC-001',
+                  namiUser: 'Robin',
+                  namiUserPhone: '9991234567',
+                  date: '7/28/21 11:23',
+                  images: [
+                    'https://images.unsplash.com/photo-1509366812838-b768dc7a8b3d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=667&q=80',
+                  ],
+                  address: 'PORFIRIO DIAZ 1550 COLONIA REVOLUCION CP 78214 PUEBLA PUEBLA',
+                  additionalInfo: 'Está ahi en el piso de una cochera.'
+                }
+              ]
             },
             1: {
               name: 'Fizzers',
