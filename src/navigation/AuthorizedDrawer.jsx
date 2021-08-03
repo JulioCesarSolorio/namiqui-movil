@@ -35,7 +35,6 @@ const Drawer = createDrawerNavigator();
 function LogOutDrawerContent(props) {
   const { navigation } = props;
   const user = useSelector((state) => state.userReducers.user);
-  console.log('current user - ', user)
   const notification = useSelector((state) => state.userReducers.notification);
   const dispatch = useDispatch();
   return (
@@ -95,7 +94,6 @@ function LogOutDrawerContent(props) {
 
 export default function AuthorizedDrawer(props) {
   const { initialRoute } = props
-  console.log('AuthDrawer initialRoute ', initialRoute);
   return (
     <Drawer.Navigator
       initialRouteName={initialRoute || "Home"}
