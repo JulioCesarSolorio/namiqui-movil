@@ -19,13 +19,16 @@ export default function StartScreen({ navigation }) {
         const granted = await PermissionsAndroid.requestMultiple(
           [
             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-            PermissionsAndroid.PERMISSIONS.CALL_PHONE
+            PermissionsAndroid.PERMISSIONS.CALL_PHONE,
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+
           ],
           {
-            title: 'Permitir que NamiQui usa tu ubicación y hace llamadas',
+            title: 'Permitir que NamiQui usa tu ubicación, hace llamadas y guarda fotos',
             message:
               'Namiqui necesitar tu ubicación '
-              + 'y poder hacer llamadas'
+              + ' poder hacer llamadas'
+              + ' y poder guardar imagenes'
               + 'para ayudarte en una emergencia.',
             buttonNeutral: 'Pregunta luego',
             buttonNegative: 'Cancelar',
