@@ -65,7 +65,6 @@ export default function VerifyClaim({ navigation, route }) {
   }
 
   function handleSeeFullClaim() {
-    // navigate to claim view
     console.log('going to claim view');
     navigation.navigate('Claim Detail', { claim });
   }

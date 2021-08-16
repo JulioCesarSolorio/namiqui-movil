@@ -33,7 +33,7 @@ function NamiquiLogo(props) {
 }
 
 function NamiquiInput(props) {
-  const { iconComponent, bordered, multiline } = props;
+  const { iconComponent, bordered, multiline, viewStyle } = props;
   return (
     <View
       style={{
@@ -48,6 +48,7 @@ function NamiquiInput(props) {
         borderWidth: 1,
         borderStyle: 'solid',
         minHeight: 50,
+        ...viewStyle
       }}
     >
       <TextInput multiline={multiline} numberOfLines={multiline ? 4 : undefined} textAlignVertical={multiline ? 'top' : undefined} style={styles.TextInput} {...props} placeholderTextColor="#666" />
