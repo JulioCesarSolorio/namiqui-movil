@@ -35,3 +35,20 @@ export function getTermsAndConditions() {
     'getTermsAndConditions',
   );
 }
+
+export function getRewardTermsAndConditions() {
+  console.log('getting terms');
+  const myHeaders = new Headers();
+
+  const requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  return apiRequest(
+    `${Config.NAMIQUI_GATEWAY}/api/users/contract/term_condition_rewards`,
+    requestOptions,
+    'getTermsAndConditions',
+  );
+}

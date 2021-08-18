@@ -17,7 +17,7 @@ import { colors } from '../../style';
 import failureIcon from '../../assets/icons/alerta_2.png';
 import 'moment/locale/es';
 
-export default function RecievePushScreen({ navigation }) {
+export default function RecievePushAlertScreen({ navigation }) {
   const pushNotification = useSelector((state) => state.userReducers.notification);
   const user = useSelector((state) => state.userReducers.user);
   console.log('recievePush notification', pushNotification);

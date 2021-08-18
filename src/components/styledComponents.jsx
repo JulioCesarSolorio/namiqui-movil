@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {
-  TextInput, View, Image, Modal, ActivityIndicator,Linking
+  TextInput, View, Image, Modal, ActivityIndicator, Linking, ScrollView
 } from 'react-native';
 import { Card, Button, Text } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
@@ -33,7 +33,7 @@ function NamiquiLogo(props) {
 }
 
 function NamiquiInput(props) {
-  const { iconComponent, bordered } = props;
+  const { iconComponent, bordered, multiline, viewStyle } = props;
   return (
     <View
       style={{
@@ -48,9 +48,10 @@ function NamiquiInput(props) {
         borderWidth: 1,
         borderStyle: 'solid',
         minHeight: 50,
+        ...viewStyle
       }}
     >
-      <TextInput style={styles.TextInput} {...props} placeholderTextColor="#666" />
+      <TextInput multiline={multiline} numberOfLines={multiline ? 4 : undefined} textAlignVertical={multiline ? 'top' : undefined} style={styles.TextInput} {...props} placeholderTextColor="#666" />
       {iconComponent || null}
     </View>
   );
@@ -94,7 +95,7 @@ function NamiquiCard(props) {
 
 function NamiquiButton(props) {
   const {
-    style, icon, text, textStyle, onPress, dark, loading,
+    style, icon, text, textStyle, onPress, dark, loading, disabled
   } = props;
   let buttonText;
   if (typeof text === 'string') {
@@ -118,7 +119,7 @@ function NamiquiButton(props) {
           elevation: 5,
           ...style,
         }}
-        disabled={loading}
+        disabled={loading || disabled}
       >
         <LinearGradient
           style={{
@@ -244,12 +245,14 @@ function NamiquiAlert(props) {
         }
         {
           message ? (
-            <Text style={{
-              color: '#000', fontSize: 24, textAlign: 'center', marginVertical: 15,
-            }}
-            >
-              {message}
-            </Text>
+            <ScrollView style={{ maxHeight: '50%' }}>
+              <Text style={{
+                color: '#000', fontSize: 24, textAlign: 'center', marginVertical: 15,
+              }}
+              >
+                {message}
+              </Text>
+            </ScrollView>
           )
             : null
         }
@@ -331,6 +334,25 @@ function NamiquiDrawerItemLink(props) {
   );
 }
 
+function NamiquiLoadingOverlay(props) {
+  const { loading } = props;
+  return (
+    <View style={{
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: 'rgba(255, 255, 255, 0.72)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
+      <ActivityIndicator size={50} color={colors.COLOR_SELECTED} />
+    </View>
+  )
+}
+
 export {
   NamiquiInput,
   NamiquiCard,
@@ -341,4 +363,5 @@ export {
   NamiquiInputIcon,
   NamiquiDrawerItem,
   NamiquiDrawerItemLink,
+  NamiquiLoadingOverlay
 };
