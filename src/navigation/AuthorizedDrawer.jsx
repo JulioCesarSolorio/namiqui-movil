@@ -27,6 +27,7 @@ import menuIconEndSession from '../assets/icons/Menu_Icon_End_Session.png';
 import menuIconCorreo from '../assets/icons/Icon_correo.png';
 import menuIconQuestion from '../assets/icons/Icon_Question.png';
 import RewardsStack from './RewardsStack';
+import NotificationStack from './NotificationStack';
 
 
 
@@ -48,6 +49,7 @@ function LogOutDrawerContent(props) {
       <NamiquiDrawerItem navigation={navigation} label="Vuélvete PRO" icon={menuIconHelp} />
       <NamiquiDrawerItem navigation={navigation} label="Chat Namiusers" icon={notification?.newNotification ? menuIconHelp : menuIconCorreo} />
       <NamiquiDrawerItem navigation={navigation} label="Recompensas" icon={menuIconHelp} />
+      <NamiquiDrawerItem navigation={navigation} label="Notificaciones" icon={menuIconHelp} />
 
       <NamiquiDrawerItemLink link="http://wa.link/2t1a0h" label="Contactanos" icon={menuIconQuestion} />
 
@@ -126,6 +128,9 @@ export default function AuthorizedDrawer(props) {
       <Drawer.Screen name="Pedir Ayuda" component={HelpActionScreen} />
       <Drawer.Screen name="Recompensas">
         {(props) => <ScreenWithHeader screenComponent={RewardsStack} screenName="Recompensas" />}
+      </Drawer.Screen>
+      <Drawer.Screen name="Notificaciones">
+        {(props) => <ScreenWithHeader screenComponent={NotificationStack} screenName="Notificaciones" />}
       </Drawer.Screen>
 
       <Drawer.Screen name="Configuración">
