@@ -50,7 +50,6 @@ export default function HelpCancelScreen({ navigation, route }) {
               fontSize: 12,
             }}
             >
-              {/* Lorem Ipsum is simply dummy text of the printing and typesetting industry.  */}
             </Text>
           </View>
           <View style={{

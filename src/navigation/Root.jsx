@@ -13,7 +13,7 @@ import { silentRefreshJWT } from '../components/LogIn/logInUtils';
 import { storeNotification } from '../actions';
 import UnauthorizedStack from './UnauthorizedStack';
 import AuthorizedDrawer from './AuthorizedDrawer';
-import NotificationStack from './NotificationStack';
+import AlertStack from './AlertStack';
 
 export default function Root(props) {
   const { setLoading } = props;
@@ -128,7 +128,7 @@ export default function Root(props) {
       }
       if (notification?.notification?.title) {
         return (
-          <NotificationStack />
+          <AlertStack />
         );
       }
       return <AuthorizedDrawer />;

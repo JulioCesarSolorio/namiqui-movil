@@ -26,6 +26,8 @@ import menuIconPodcast from '../assets/icons/Menu_Icon_Podcast.png';
 import menuIconEndSession from '../assets/icons/Menu_Icon_End_Session.png';
 import menuIconCorreo from '../assets/icons/Icon_correo.png';
 import menuIconQuestion from '../assets/icons/Icon_Question.png';
+import RewardsStack from './RewardsStack';
+import NotificationStack from './NotificationStack';
 
 
 
@@ -41,14 +43,15 @@ function LogOutDrawerContent(props) {
 
       <ProfileCard user={user} navigation={navigation} />
       <NamiquiDrawerItem navigation={navigation} label="Mapa Delictivo" icon={menuIconMap} />
-      <NamiquiDrawerItem navigation={navigation} label="Config Ayúdame" screen="Ayuda" icon={menuIconHelp} />
+      <NamiquiDrawerItem navigation={navigation} label="Config Ayúdame" screen="Ayuda" />
       <NamiquiDrawerItem navigation={navigation} label="Configuración" icon={menuIconConfig} />
       <NamiquiDrawerItem navigation={navigation} label="Podcast" icon={menuIconPodcast} />
       <NamiquiDrawerItem navigation={navigation} label="Vuélvete PRO" icon={menuIconHelp} />
-
       <NamiquiDrawerItem navigation={navigation} label="Chat Namiusers" icon={notification?.newNotification ? menuIconHelp : menuIconCorreo} />
+      <NamiquiDrawerItem navigation={navigation} label="Recompensas" icon={menuIconHelp} />
+      <NamiquiDrawerItem navigation={navigation} label="Notificaciones" icon={menuIconHelp} />
+
       <NamiquiDrawerItemLink link="http://wa.link/2t1a0h" label="Contactanos" icon={menuIconQuestion} />
-     
 
 
       <View
@@ -93,7 +96,6 @@ function LogOutDrawerContent(props) {
 
 export default function AuthorizedDrawer(props) {
   const { initialRoute } = props
-  console.log('AuthDrawer initialRoute ', initialRoute);
   return (
     <Drawer.Navigator
       initialRouteName={initialRoute || "Home"}
@@ -124,6 +126,13 @@ export default function AuthorizedDrawer(props) {
         {(props) => <ScreenWithHeader screenComponent={ConversationsScreen} screenName="Chat Namiusers" />}
       </Drawer.Screen>
       <Drawer.Screen name="Pedir Ayuda" component={HelpActionScreen} />
+      <Drawer.Screen name="Recompensas">
+        {(props) => <ScreenWithHeader screenComponent={RewardsStack} screenName="Recompensas" />}
+      </Drawer.Screen>
+      <Drawer.Screen name="Notificaciones">
+        {(props) => <ScreenWithHeader screenComponent={NotificationStack} screenName="Notificaciones" />}
+      </Drawer.Screen>
+
       <Drawer.Screen name="Configuración">
         {(props) => <ScreenWithHeader screenComponent={ConfiguracionUsuario} screenName="Configuración" />}
       </Drawer.Screen>
