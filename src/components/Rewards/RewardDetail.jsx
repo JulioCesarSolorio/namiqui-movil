@@ -4,11 +4,12 @@ import { NamiquiButton, NamiquiTitle } from '../styledComponents';
 import { Alert, Pressable, View, Image } from 'react-native';
 import RewardItemImage from './RewardItemImage';
 import { colors } from '../../style';
+import RewardMap from './RewardMap';
 
 export default function RewardDetail({ navigation, route }) {
   const { reward } = route?.params;
   console.log('reward', reward)
-  const { name, description, images, address, amount, claims } = reward;
+  const { name, description, images, address, amount, claims, coords } = reward;
 
   function handleRemoveReward() {
     console.log('removing reward');
@@ -51,7 +52,7 @@ export default function RewardDetail({ navigation, route }) {
   return (
     <Container style={{ flexGrow: 1 }}>
       <Content style={{ paddingHorizontal: 20 }}>
-        <NamiquiTitle text="Recompensas Activas" />
+        <NamiquiTitle text="Detalle de Recompensa" />
         {reward ? (
           <>
             {name && <Text>Nombre del bien: {name}</Text>}
@@ -62,6 +63,7 @@ export default function RewardDetail({ navigation, route }) {
             )}
             {description && <Text>Datos generales: {description}</Text>}
             {address && <Text>Dirección del extravío: {address}</Text>}
+            {coords && <RewardMap lostObjectCoords={coords}/>}
             {amount && <Text>Monto de recompensa: {amount}</Text>}
             {claims && (
               <>

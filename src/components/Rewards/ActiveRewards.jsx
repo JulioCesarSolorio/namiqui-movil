@@ -25,6 +25,7 @@ export default function ActiveRewards({ navigation }) {
               ],
               address: 'PORFIRIO DIAZ 1550 COLONIA REVOLUCION CP 78214 PUEBLA PUEBLA.',
               amount: '500',
+              coords: {"latitude": 37.41800509701347, "longitude": -122.07104243338107},
               claims: [
                 {
                   claimId: 'REC-001',
@@ -47,6 +48,7 @@ export default function ActiveRewards({ navigation }) {
                 'https://excitedcats.com/wp-content/uploads/2020/10/Abyssinian-serious.webp',
               ],
               address: 'PORFIRIO DIAZ 1550 COLONIA REVOLUCION CP 78214 PUEBLA PUEBLA.',
+              coords: {"latitude": 37.41800509701347, "longitude": -122.07104243338107},
               amount: '3000'
             }
           })
