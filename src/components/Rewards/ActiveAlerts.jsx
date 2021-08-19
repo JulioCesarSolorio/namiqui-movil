@@ -23,7 +23,8 @@ export default function ActiveAlerts({ navigation }) {
                 'https://cdn.shopify.com/s/files/1/0401/1835/4086/products/gorra-black-clover-live-lucky-hat-cap-hat-premium-clover-2-29800651620518_1800x1800.jpg?v=1626290898'
               ],
               address: 'PORFIRIO DIAZ 1550 COLONIA REVOLUCION CP 78214 PUEBLA PUEBLA.',
-              amount: '500'
+              amount: '500',
+              coords: {"latitude": 37.41800509701347, "longitude": -122.07104243338107}
             },
             1: {
               name: 'Fizzers',
@@ -32,7 +33,8 @@ export default function ActiveAlerts({ navigation }) {
                 'https://excitedcats.com/wp-content/uploads/2020/10/Abyssinian-serious.webp',
               ],
               address: 'PORFIRIO DIAZ 1550 COLONIA REVOLUCION CP 78214 PUEBLA PUEBLA.',
-              amount: '3000'
+              amount: '3000',
+              coords: {"latitude": 37.41800509701347, "longitude": -122.07104243338107}
             }
           })
       } catch (e) {

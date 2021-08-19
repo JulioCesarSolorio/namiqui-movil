@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useIsFocused } from '@react-navigation/native';
 import { Container, Content, Text } from 'native-base';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { NamiquiButton, NamiquiInput, NamiquiTitle } from '../styledComponents';
 import { Alert, Image, Pressable, View } from 'react-native';
 import { useForm } from 'react-hook-form';
@@ -9,6 +10,7 @@ import { Select } from '../elements/forms/namiquiForm';
 import { colors } from '../../style';
 import RewardItemImage from './RewardItemImage';
 import ErrorText from '../elements/forms/ErrorText';
+import RewardMap from './RewardMap';
 
 export default function LaunchReward({ navigation }) {
   const [registeredGoods, setRegisteredGoods] = useState();
@@ -16,6 +18,7 @@ export default function LaunchReward({ navigation }) {
   const [rewardAmount, setRewardAmount] = useState();
   const [customAmount, setCustomAmount] = useState();
   const [lossLocation, setLossLocation] = useState();
+  const [lastSeenCoords, setLastSeenCoords] = useState();
   const [formValidationErrors, setFormValidaionErrors] = useState({});
   const isFocused = useIsFocused();
   const { control, handleSubmit, errors } = useForm({ defaultValues: { selectedGood: '' } });
@@ -55,6 +58,17 @@ export default function LaunchReward({ navigation }) {
     }
   }
 
+  function handleChangeLastSeenText(newText) {
+    setLossLocation(newText);
+    newText.length > 0 && setFormValidaionErrors((state) => ({ ...state, lossLocation: false }));
+
+  }
+
+  function handleChangeCoords(coords) {
+    setLastSeenCoords(coords);
+    setFormValidaionErrors((state) => ({ ...state, lastSeenCoords: false }));
+  }
+
   function handleSelectAmount(amount) {
     console.log('amount', amount);
     setRewardAmount(amount);
@@ -78,10 +92,14 @@ export default function LaunchReward({ navigation }) {
     if (!lossLocation) {
       errors.lossLocation = true;
     }
+    if (!lastSeenCoords) {
+      errors.lastSeenCoords = true;
+    }
     if (Object.keys(errors).length < 1) {
       Alert.alert('this is where it would send the Reward to the back');
       // Send reward to back, then navigate to ActiveRewards.
       // Check it amount is custom, and add accordingly
+      // Add coords from map
       navigation.navigate('Active Rewards');
     } else {
       setFormValidaionErrors(errors);
@@ -163,13 +181,15 @@ export default function LaunchReward({ navigation }) {
 
         <Text style={{ marginVertical: 10 }}>Último lugar visto</Text>
         <NamiquiInput
-          onChangeText={(newValue) => setLossLocation(newValue)}
+          onChangeText={handleChangeLastSeenText}
           value={lossLocation}
           placeholder=""
           multiline
         />
         {formValidationErrors.lossLocation && <ErrorText>Favor de escribir dónde último viste el bien.</ErrorText>}
 
+        <RewardMap setLastSeenCoords={handleChangeCoords} />
+        {formValidationErrors.lastSeenCoords && <ErrorText>Favor de escoger una ubicación en el mapa.</ErrorText>}
 
         <Text style={{ marginVertical: 10 }}>Cantidad de la recompensa</Text>
         <View style={{ width: "100%", display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -186,7 +206,7 @@ export default function LaunchReward({ navigation }) {
               value={customAmount}
               placeholder=""
               viewStyle={{ marginHorizontal: 20 }}
-              
+
             />
           }
         </View>

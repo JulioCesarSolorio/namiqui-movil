@@ -3,11 +3,12 @@ import { Container, Content, Text } from 'native-base';
 import { NamiquiButton, NamiquiTitle } from '../styledComponents';
 import { View } from 'react-native';
 import RewardItemImage from './RewardItemImage';
+import RewardMap from './RewardMap';
 
 export default function AlertDetail({ navigation, route }) {
   const { alert } = route?.params;
   console.log('alert', alert)
-  const { name, description, images, address, amount } = alert;
+  const { name, description, images, address, amount, coords } = alert;
 
   function handleClaimReward() {
     console.log('claiming reward');
@@ -28,6 +29,7 @@ export default function AlertDetail({ navigation, route }) {
             )}
             {description && <Text>Datos generales: {description}</Text>}
             {address && <Text>Dirección del extravío: {address}</Text>}
+            {coords && <RewardMap lostObjectCoords={coords}/>}
             {amount && <Text>Monto de recompensa: {amount}</Text>}
 
             <NamiquiButton text="Reclamar Recompensa" onPress={handleClaimReward} style={{ marginVertical: 50 }} />
