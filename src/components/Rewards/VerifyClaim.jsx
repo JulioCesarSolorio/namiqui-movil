@@ -13,7 +13,7 @@ import RewardMap from './RewardMap';
 export default function VerifyClaim({ navigation, route }) {
   const { params } = route;
   const { claim, reward } = params;
-  const { claimId, images: claimImages, date, address: claimAddress, coords } = claim;
+  const { claimId, images: claimImages, date, address: claimAddress } = claim;
   const { name, description, images: rewardImages, address, amount } = reward;
   const [loading, setLoading] = useState(false);
   const [alertDataRecognize, setAlertDataRecognize] = useState({
@@ -89,8 +89,6 @@ export default function VerifyClaim({ navigation, route }) {
           </View>
         )}
         {address && <Text style={{ marginVertical: 10 }}>Dirección de extravio: {address}</Text>}
-        {coords && <RewardMap foundObject={true} lostObjectCoords={coords}/>}
-
         {amount && (
           <>
             <Text>Monto de recompensa: ${amount}</Text>

@@ -5,11 +5,12 @@ import { captureScreen } from "react-native-view-shot";
 import CameraRoll from "@react-native-community/cameraroll";
 import { NamiquiButton, NamiquiTitle } from '../styledComponents';
 import RewardItemImage from './RewardItemImage';
+import RewardMap from './RewardMap';
 
 export default function ClaimDetail({ navigation, route }) {
   const claim = route.params.claim;
   console.log('ClaimDetail claim', claim);
-  const { namiUser, address, additionalInfo, namiUserPhone } = claim;
+  const { namiUser, address, additionalInfo, namiUserPhone, coords } = claim;
 
   function makeCall() {
     Linking.openURL(`tel:${namiUserPhone}`)
@@ -71,6 +72,7 @@ export default function ClaimDetail({ navigation, route }) {
         </View>
         <Text style={{ marginVertical: 10 }}>LA DIRECCION REPORTADA DE LA UBICACIÓN DE TU BIEN REGISTRADO ES:</Text>
         <Text style={{ marginVertical: 10 }}>{address}</Text>
+        {coords && <RewardMap foundObject={true} lostObjectCoords={coords}/>}
         <Text style={{ marginVertical: 10 }}>Datos Adicionales</Text>
         <Text style={{ marginVertical: 10 }}>{additionalInfo}</Text>
 
