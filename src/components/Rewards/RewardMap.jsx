@@ -36,7 +36,7 @@ function setMapInitialRegion() {
 setMapInitialRegion();
 
 export default function RewardMap(props) {
-  const { setLastSeenCoords, lostObjectCoords } = props;
+  const { setLastSeenCoords, lostObjectCoords, foundObject } = props;
   const [logMessage, setLogMessage] = useState('');
   const [logLoading, setLogLoading] = useState(false);
   const [userLocation, setUserLocation] = useState(initialRegion);
@@ -98,7 +98,7 @@ export default function RewardMap(props) {
           <Marker
             key='marker'
             coordinate={markerCoords}
-            title='Último lugar visto'
+            title={foundObject ? 'Objecto Encontrado Aqui' : 'Último lugar visto'}
           />}
       </MapView>
       {(logMessage !== '')

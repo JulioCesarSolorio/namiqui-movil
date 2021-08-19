@@ -9,6 +9,7 @@ import { colors } from '../../style';
 import ErrorText from '../elements/forms/ErrorText';
 import { useEffect } from 'react';
 import { getRewardTermsAndConditions } from '../../api/assets';
+import RewardMap from './RewardMap';
 
 export default function ClaimReward({ navigation, route }) {
   const { alert } = route?.params;
@@ -19,6 +20,7 @@ export default function ClaimReward({ navigation, route }) {
   const { control, handleSubmit, errors } = useForm();
   const [termsAndConditions, setTermsAndConditions] = useState('');
   const [termsVisible, setTermsVisible] = useState(false);
+  const [ lastSeenCoords, setLastSeenCoords] = useState()
 
   useEffect(() => {
     async function handleGetRewardTermsAndConditions() {
@@ -46,6 +48,11 @@ export default function ClaimReward({ navigation, route }) {
     )
   }
 
+  function handleChangeCoords(coords) {
+    setLastSeenCoords(coords);
+    setFormValidaionErrors((state) => ({ ...state, lastSeenCoords: false }));
+  }
+
   function handleLaunchImageLibrary() {
     launchImageLibrary(
       { mediaType: 'photo', saveToPhotos: true },
@@ -60,6 +67,7 @@ export default function ClaimReward({ navigation, route }) {
     console.log('going to claim this reward', value);
     if (goodPhotos.length > 0) {
       // process images to send to back
+      // add coords
       // send data to back to claim reward
       Alert.alert('Aqui se manda al back.')
     } else {
@@ -127,11 +135,16 @@ export default function ClaimReward({ navigation, route }) {
             defaultValue={""}
           />
           {errors.foundAddress && errors.foundAddress.type === 'required' && <Text style={{ color: colors.COLOR_DANGER }}>La dirección de donde se encuentra el bien es un campo obligatorio</Text>}
+
+          <RewardMap setLastSeenCoords={handleChangeCoords} foundObject={true}/>
+          {formValidationErrors.lastSeenCoords && <ErrorText>Favor de escoger una ubicación en el mapa.</ErrorText>}
+
+
         </Form>
         {amount && <Text>Monto de recompensa: ${amount}</Text>}
         <NamiquiButton text="Enviar" onPress={handleSubmit(handleClaimReward)} style={{ marginVertical: 30 }} />
         <Pressable onPress={() => goToTerms()}>
-          <Text style={{ textDecorationLine: 'underline', marginLeft: 5, fontSize: 12, marginBottom: 10}}>Acepto Términos y Condiciones Del Reclamo de Recompensa</Text>
+          <Text style={{ textDecorationLine: 'underline', marginLeft: 5, fontSize: 12, marginBottom: 10 }}>Acepto Términos y Condiciones Del Reclamo de Recompensa</Text>
         </Pressable>
         <NamiquiAlert
           title='TERMINOS Y CONDICIONES DEL RECLAMO DE LA RECOMPENSA'

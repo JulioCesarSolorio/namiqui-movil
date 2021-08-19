@@ -35,6 +35,7 @@ export default function ActiveRewards({ navigation }) {
                     'https://images.unsplash.com/photo-1509366812838-b768dc7a8b3d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=667&q=80',
                   ],
                   address: 'PORFIRIO DIAZ 1550 COLONIA REVOLUCION CP 78214 PUEBLA PUEBLA',
+                  coords: {"latitude": 37.41800509701347, "longitude": -122.07104243338107},
                   additionalInfo: 'Está ahi en el piso de una cochera.'
                 }
               ]

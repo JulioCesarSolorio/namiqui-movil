@@ -8,11 +8,12 @@ import successIcon from '../../assets/icons/Icon_Verificacion.png';
 import failureIcon from '../../assets/icons/alerta_2.png';
 import { colors } from '../../style';
 import ErrorText from '../elements/forms/ErrorText';
+import RewardMap from './RewardMap';
 
 export default function VerifyClaim({ navigation, route }) {
   const { params } = route;
   const { claim, reward } = params;
-  const { claimId, images: claimImages, date, address: claimAddress } = claim;
+  const { claimId, images: claimImages, date, address: claimAddress, coords } = claim;
   const { name, description, images: rewardImages, address, amount } = reward;
   const [loading, setLoading] = useState(false);
   const [alertDataRecognize, setAlertDataRecognize] = useState({
@@ -87,7 +88,9 @@ export default function VerifyClaim({ navigation, route }) {
             {claimImages.map((image, i) => <RewardItemImage source={{ uri: image }} key={`${claimId}-${i}`} />)}
           </View>
         )}
-        {address && (<Text style={{ marginVertical: 10 }}>Dirección de extravio: {address}</Text>)}
+        {address && <Text style={{ marginVertical: 10 }}>Dirección de extravio: {address}</Text>}
+        {coords && <RewardMap foundObject={true} lostObjectCoords={coords}/>}
+
         {amount && (
           <>
             <Text>Monto de recompensa: ${amount}</Text>
@@ -99,11 +102,11 @@ export default function VerifyClaim({ navigation, route }) {
         <NamiquiButton
           text="Reconozco mi bien"
           onPress={handleRecognizeGood}
-          style={{marginVertical: 20}}
+          style={{ marginVertical: 20 }}
         />
         <NamiquiButton
-        text="Solicitar más información"
-        onPress={goToGetMoreInfo}
+          text="Solicitar más información"
+          onPress={goToGetMoreInfo}
         />
         <NamiquiAlert image={alertDataRecognize?.image} title={alertDataRecognize?.title} message={alertDataRecognize?.message} closeModal={closeAlertRecognize} visible={alertDataRecognize?.visible} onDismiss={handleAcceptCharges} />
         <NamiquiAlert image={alertDataCharge?.image} title={alertDataCharge?.title} message={alertDataCharge?.message} closeModal={closeAlertCharge} visible={alertDataCharge?.visible} onDismiss={handleSeeFullClaim} />
